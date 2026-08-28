@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://c0dwmrdwmocbb"]
+
+[ext_resource type="Script" uid="uid://bcmrudg4s13je" path="res://gungeon_proto/scripts/debug/training/training_room_layout.gd" id="1_layout"]
+[ext_resource type="Script" uid="uid://u2dk61rcbgx" path="res://gungeon_proto/scripts/debug/training/training_camera.gd" id="2_camera"]
+
+[node name="TrainingRoomVisual" type="Node2D" unique_id=42352659]
+
+[node name="World" type="Node2D" parent="." unique_id=1283552579]
+script = ExtResource("1_layout")
+
+[node name="FloorPreview" type="Polygon2D" parent="World" unique_id=197436153]
+color = Color(0.085, 0.085, 0.095, 1)
+polygon = PackedVector2Array(-520, -300, 351.66446, -300, 520, -300, 520, 300, -520, 300)
+
+[node name="PlayerSpawn" type="Marker2D" parent="World" unique_id=1407115408]
+position = Vector2(-320, 60)
+
+[node name="DummyZone" type="Node2D" parent="World" unique_id=638650314]
+
+[node name="DummySpawn" type="Marker2D" parent="World/DummyZone" unique_id=880689465]
+position = Vector2(40, 60)
+
+[node name="ProjectileZone" type="Node2D" parent="World" unique_id=1961431575]
+
+[node name="TurretSpawn" type="Marker2D" parent="World/ProjectileZone" unique_id=1603566642]
+position = Vector2(350, 60)
+
+[node name="WeaponRack" type="Node2D" parent="World" unique_id=1102289391]
+position = Vector2(-230, -220)
+
+[node name="WeaponSlot01" type="Marker2D" parent="World/WeaponRack" unique_id=1099998465]
+
+[node name="WeaponSlot02" type="Marker2D" parent="World/WeaponRack" unique_id=996883811]
+
+[node name="WeaponSlot03" type="Marker2D" parent="World/WeaponRack" unique_id=55368890]
+
+[node name="WeaponSlot04" type="Marker2D" parent="World/WeaponRack" unique_id=1084343146]
+
+[node name="WeaponSlot05" type="Marker2D" parent="World/WeaponRack" unique_id=2045621758]
+
+[node name="WeaponSlot06" type="Marker2D" parent="World/WeaponRack" unique_id=697889970]
+
+[node name="WeaponSlot07" type="Marker2D" parent="World/WeaponRack" unique_id=165387133]
+
+[node name="WeaponSlot08" type="Marker2D" parent="World/WeaponRack" unique_id=1139978819]
+
+[node name="WeaponSlot09" type="Marker2D" parent="World/WeaponRack" unique_id=132007488]
+
+[node name="WeaponSlot10" type="Marker2D" parent="World/WeaponRack" unique_id=1874597405]
+
+[node name="WeaponSlot11" type="Marker2D" parent="World/WeaponRack" unique_id=313305930]
+
+[node name="WeaponSlot12" type="Marker2D" parent="World/WeaponRack" unique_id=1761421450]
+
+[node name="PropZone" type="Node2D" parent="World" unique_id=87255815]
+position = Vector2(0, 215)
+
+[node name="PotSlot" type="Marker2D" parent="World/PropZone" unique_id=1692157543]
+
+[node name="CrateSlot" type="Marker2D" parent="World/PropZone" unique_id=660854804]
+
+[node name="BarrelSlot" type="Marker2D" parent="World/PropZone" unique_id=1549819715]
+
+[node name="TableSlot" type="Marker2D" parent="World/PropZone" unique_id=1186737551]
+
+[node name="PillarSlot" type="Marker2D" parent="World/PropZone" unique_id=256324030]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1640894201]
+script = ExtResource("2_camera")

@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="RoomLayoutData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/room_layout_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "combat_5"
+room_type = "combat"
+layout_id = 5
+walls = [{
+"position": Vector2(-165, -70),
+"size": Vector2(90, 24)
+}, {
+"position": Vector2(0, 70),
+"size": Vector2(90, 24)
+}, {
+"position": Vector2(165, -70),
+"size": Vector2(90, 24)
+}]
+props = [{
+"position": Vector2(-220, 80),
+"type": "pillar",
+"id": "layout5_pillar_a"
+}, {
+"position": Vector2(220, 80),
+"type": "pillar",
+"id": "layout5_pillar_b"
+}]
+explosive_barrels = [{
+"position": Vector2(-70, -115),
+"id": "layout5_barrel_a"
+}, {
+"position": Vector2(70, 115),
+"id": "layout5_barrel_b"
+}, {
+"position": Vector2(0, 0),
+"id": "layout5_barrel_c"
+}]
+spike_traps = [
+Vector2(-135, 70),
+Vector2(135, -70)
+]
+saw_traps = [{
+"from": Vector2(-250, 145),
+"to": Vector2(250, 145)
+}]

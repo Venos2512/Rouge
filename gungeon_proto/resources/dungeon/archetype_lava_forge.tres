@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DungeonArchetypeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/dungeon_archetype_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "lava_forge"
+terrain_id = "lava"
+minimum_rooms = 12
+maximum_rooms = 15
+half_width = 6
+half_height = 3
+growth_style = 1
+branch_from_latest_chance = 0.45
+combat_layout_ids = Array[int]([2, 3, 4])

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BossData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/enemies/boss_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "default_boss"
+display_name = "Boss"
+spawn_radius = 32.0
+minimum_player_distance = 125.0
+property_overrides = {}

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RoomRuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/room_rule_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+room_type = "boss"
+auto_cleared = false
+enemy_count_override = -1
+encounter_mode = "boss"
+reward_mode = "boss_chest_exit"
+chest_source = "boss"
+chest_position = Vector2(-75, 0)
+spawn_floor_exit = true
+floor_exit_position = Vector2(0, 0)

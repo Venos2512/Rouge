@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/enemies/enemy_data.gd" id="1_data"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/enemies/tactical_gunner.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_data")
+id = "gunner_elite"
+display_name = "Tactical Gunner"
+enemy_type = "gunner_elite"
+scene = ExtResource("2_scene")
+spawn_weight = 1.0
+spawn_radius = 13.0
+minimum_player_distance = 72.0

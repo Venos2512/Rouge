@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RoomLayoutData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/room_layout_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "start"
+room_type = "start"
+layout_id = 0
+props = [{
+"position": Vector2(-265, -130),
+"type": "pot",
+"id": "start_pot_a"
+}, {
+"position": Vector2(265, -130),
+"type": "pot",
+"id": "start_pot_b"
+}, {
+"position": Vector2(-265, 135),
+"type": "crate",
+"id": "start_crate_a"
+}]

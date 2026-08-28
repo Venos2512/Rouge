@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://dgq45o2hlodq0"]
+
+[ext_resource type="Script" uid="uid://e0c8gqc8ppn0" path="res://gungeon_proto/scripts/ui/gameplay_hud.gd" id="1_hud"]
+
+[node name="GameplayHUD" type="CanvasLayer" unique_id=1325258315]
+script = ExtResource("1_hud")
+
+[node name="TopLeft" type="PanelContainer" parent="." unique_id=1643303838]
+offset_left = 7.0
+offset_top = 5.000001
+offset_right = 217.0
+offset_bottom = 176.0
+scale = Vector2(0.82, 0.82)
+
+[node name="Content" type="VBoxContainer" parent="TopLeft" unique_id=833422500]
+layout_mode = 2
+
+[node name="HealthLabel" type="Label" parent="TopLeft/Content" unique_id=1521009535]
+layout_mode = 2
+text = "HP  5 / 5"
+
+[node name="HealthBar" type="ProgressBar" parent="TopLeft/Content" unique_id=889749482]
+custom_minimum_size = Vector2(210, 18)
+layout_mode = 2
+value = 5.0
+show_percentage = false
+
+[node name="Relics" type="VBoxContainer" parent="TopLeft/Content" unique_id=38057251]
+layout_mode = 2
+
+[node name="Relic1" type="Label" parent="TopLeft/Content/Relics" unique_id=273685888]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "test size"
+
+[node name="Relic2" type="Label" parent="TopLeft/Content/Relics" unique_id=1175973792]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "test size"
+
+[node name="Relic3" type="Label" parent="TopLeft/Content/Relics" unique_id=1427164857]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "test size"
+
+[node name="Relic4" type="Label" parent="TopLeft/Content/Relics" unique_id=1619469595]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "test size"
+
+[node name="Relic5" type="Label" parent="TopLeft/Content/Relics" unique_id=368708567]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "test size"
+
+[node name="Relic6" type="Label" parent="TopLeft/Content/Relics" unique_id=753987334]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "test size"
+
+[node name="TopRight" type="Control" parent="." unique_id=670238293]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -180.99994
+offset_top = 15.0
+offset_right = 23.0
+offset_bottom = 55.0
+grow_horizontal = 0
+scale = Vector2(0.82, 0.82)
+
+[node name="GoldLabel" type="Label" parent="TopRight" unique_id=1710835346]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -180.0
+grow_horizontal = 0
+text = "GOLD  0"
+horizontal_alignment = 2
+
+[node name="BottomRight" type="PanelContainer" parent="." unique_id=140199230]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -179.0
+offset_top = -261.99997
+offset_right = 35.0
+offset_bottom = 52.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.82, 0.82)
+
+[node name="Content" type="VBoxContainer" parent="BottomRight" unique_id=680872013]
+layout_mode = 2
+
+[node name="Weapon1" type="Label" parent="BottomRight/Content" unique_id=251110888]
+layout_mode = 2
+
+[node name="Weapon2" type="Label" parent="BottomRight/Content" unique_id=1859005573]
+layout_mode = 2
+
+[node name="Weapon3" type="Label" parent="BottomRight/Content" unique_id=1223799132]
+layout_mode = 2
+
+[node name="Weapon4" type="Label" parent="BottomRight/Content" unique_id=1826347240]
+layout_mode = 2
+
+[node name="Weapon5" type="Label" parent="BottomRight/Content" unique_id=1526628306]
+layout_mode = 2
+
+[node name="Weapon6" type="Label" parent="BottomRight/Content" unique_id=651170801]
+layout_mode = 2
+
+[node name="Weapon7" type="Label" parent="BottomRight/Content" unique_id=2011538246]
+layout_mode = 2
+
+[node name="Weapon8" type="Label" parent="BottomRight/Content" unique_id=2077446844]
+layout_mode = 2
+
+[node name="Weapon9" type="Label" parent="BottomRight/Content" unique_id=1289377311]
+layout_mode = 2

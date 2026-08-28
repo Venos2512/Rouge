@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://burdpya0c5saq"]
+
+[ext_resource type="Script" uid="uid://d3nejnpvysgij" path="res://gungeon_proto/scripts/enemies/enemy_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/enemies/gunner.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1")
+id = "gunner"
+display_name = "Gunner"
+enemy_type = "gunner"
+scene = ExtResource("2_scene")

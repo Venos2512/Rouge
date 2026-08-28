@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://kocv7cwuqfkq"]
+
+[ext_resource type="Script" uid="uid://d3nejnpvysgij" path="res://gungeon_proto/scripts/enemies/enemy_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/enemies/spread.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1")
+id = "spread"
+display_name = "Spread"
+enemy_type = "spread"
+scene = ExtResource("2_scene")
+spawn_weight = 0.8

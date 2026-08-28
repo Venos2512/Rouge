@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/ui/upgrade_choice_ui.gd" id="1_upgrade"]
+
+[node name="UpgradeChoiceUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_upgrade")
+
+[node name="Dimmer" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.01, 0.01, 0.02, 0.8)
+
+[node name="Panel" type="PanelContainer" parent="."]
+offset_left = 296.0
+offset_top = 178.0
+offset_right = 856.0
+offset_bottom = 470.0
+
+[node name="Box" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel/Box"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "CHOOSE 1 UPGRADE"
+horizontal_alignment = 1
+
+[node name="Card1" type="Button" parent="Panel/Box"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+
+[node name="Card2" type="Button" parent="Panel/Box"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+
+[node name="Card3" type="Button" parent="Panel/Box"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2

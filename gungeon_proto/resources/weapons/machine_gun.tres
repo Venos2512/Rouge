@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://fesojb57bl63"]
+
+[ext_resource type="Script" uid="uid://d4av67wwqco1x" path="res://gungeon_proto/scripts/weapons/weapon_data.gd" id="1"]
+[ext_resource type="Script" uid="uid://b70nmoff31t2l" path="res://gungeon_proto/scripts/weapons/attacks/projectile_attack_provider.gd" id="2_attack"]
+[ext_resource type="Texture2D" path="res://gungeon_proto/assets/icons/weapons/weapon_machine_gun.png" id="3_icon"]
+
+[resource]
+script = ExtResource("1")
+id = "machine_gun"
+display_name = "Machine Gun"
+automatic = true
+attack_provider = ExtResource("2_attack")
+hud_icon_id = "machine_gun"
+icon_texture = ExtResource("3_icon")
+pickup_color = Color(0.43, 0.78, 0.49, 1)
+fire_interval = 0.09
+recoil = 1.0
+magazine_size = 30
+reserve_ammo = 180
+bullet_speed = 650.0
+spread_deg = 6.0

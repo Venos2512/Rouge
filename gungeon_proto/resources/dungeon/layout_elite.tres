@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="RoomLayoutData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/room_layout_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "elite"
+room_type = "elite"
+layout_id = 0
+props = [{
+"position": Vector2(-135, 0),
+"type": "pillar",
+"id": "elite_pillar_a"
+}, {
+"position": Vector2(135, 0),
+"type": "pillar",
+"id": "elite_pillar_b"
+}, {
+"position": Vector2(0, 120),
+"type": "crate",
+"id": "elite_crate_a"
+}]
+explosive_barrels = [{
+"position": Vector2(-215, 100),
+"id": "elite_barrel_a"
+}, {
+"position": Vector2(215, 100),
+"id": "elite_barrel_b"
+}]

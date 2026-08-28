@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="WeaponSpecialCatalog" format=3 uid="uid://ci6tp382ar6vn"]
+
+[ext_resource type="Script" uid="uid://ckw7xkrh7bei2" path="res://gungeon_proto/scripts/weapons/specials/weapon_special_catalog.gd" id="1_catalog"]
+[ext_resource type="Script" uid="uid://dp8oemw1iw5fh" path="res://gungeon_proto/scripts/weapons/specials/weapon_special_provider_data.gd" id="2_provider_data"]
+[ext_resource type="Script" uid="uid://o2kqpj5neyko" path="res://gungeon_proto/scripts/weapons/specials/sword_special_provider.gd" id="3_sword"]
+[ext_resource type="Script" uid="uid://d3pjxyio2vwlq" path="res://gungeon_proto/scripts/weapons/specials/spear_special_provider.gd" id="4_spear"]
+[ext_resource type="Script" uid="uid://eslplv528cen" path="res://gungeon_proto/scripts/weapons/specials/hammer_special_provider.gd" id="5_hammer"]
+
+[sub_resource type="Resource" id="Resource_sword"]
+script = ExtResource("2_provider_data")
+weapon_ids = Array[String](["sword"])
+provider_script = ExtResource("3_sword")
+
+[sub_resource type="Resource" id="Resource_spear"]
+script = ExtResource("2_provider_data")
+weapon_ids = Array[String](["spear"])
+provider_script = ExtResource("4_spear")
+
+[sub_resource type="Resource" id="Resource_hammer"]
+script = ExtResource("2_provider_data")
+weapon_ids = Array[String](["hammer"])
+provider_script = ExtResource("5_hammer")
+
+[resource]
+script = ExtResource("1_catalog")
+providers = Array[Resource]([SubResource("Resource_sword"), SubResource("Resource_spear"), SubResource("Resource_hammer")])

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://dl2iwexucw0g0"]
+
+[ext_resource type="Script" uid="uid://d4av67wwqco1x" path="res://gungeon_proto/scripts/weapons/weapon_data.gd" id="1"]
+[ext_resource type="Script" uid="uid://b70nmoff31t2l" path="res://gungeon_proto/scripts/weapons/attacks/projectile_attack_provider.gd" id="2_attack"]
+[ext_resource type="Texture2D" path="res://gungeon_proto/assets/icons/weapons/weapon_shotgun.png" id="3_icon"]
+
+[resource]
+script = ExtResource("1")
+id = "shotgun"
+display_name = "Shotgun"
+attack_provider = ExtResource("2_attack")
+hud_icon_id = "shotgun"
+icon_texture = ExtResource("3_icon")
+damage = 2
+fire_interval = 0.72
+recoil = 6.0
+magazine_size = 6
+reserve_ammo = 30
+bullet_speed = 500.0
+pellets = 6
+spread_deg = 18.0

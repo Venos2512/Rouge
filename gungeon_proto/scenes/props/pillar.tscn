@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/props/carryable_prop.gd" id="1_prop"]
+
+[sub_resource type="RectangleShape2D" id="PillarShape"]
+size = Vector2(28, 40)
+
+[node name="Pillar" type="StaticBody2D"]
+script = ExtResource("1_prop")
+prop_type = "pillar"
+health = 999
+destructible = false
+carryable = false
+hit_radius = 23.0
+interaction_radius = 44.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("PillarShape")
+
+[node name="CarryOffset" type="Marker2D" parent="."]
+position = Vector2(0, -38)
+
+[node name="PromptAnchor" type="Marker2D" parent="."]
+position = Vector2(0, -44)
+
+[node name="PromptLabel" type="Label" parent="PromptAnchor"]
+z_index = 50
+offset_left = -70.0
+offset_right = 70.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 1
+visible = false
+
+[node name="VisualRoot" type="Node2D" parent="."]
+
+[node name="Body" type="Polygon2D" parent="VisualRoot"]
+polygon = PackedVector2Array(-14, -20, 14, -20, 14, 20, -14, 20)
+color = Color(0.305882, 0.290196, 0.321569, 1)
+
+[node name="TopCap" type="Polygon2D" parent="VisualRoot"]
+polygon = PackedVector2Array(-17, -20, 17, -20, 17, -13, -17, -13)
+color = Color(0.411765, 0.388235, 0.411765, 1)
+
+[node name="BottomCap" type="Polygon2D" parent="VisualRoot"]
+polygon = PackedVector2Array(-17, 13, 17, 13, 17, 20, -17, 20)
+color = Color(0.215686, 0.207843, 0.235294, 1)

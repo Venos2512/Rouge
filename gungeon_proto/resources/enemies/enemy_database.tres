@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EnemyDatabase" format=3 uid="uid://dfoc5fal1v3ru"]
+
+[ext_resource type="Script" uid="uid://dgi7yf2luubun" path="res://gungeon_proto/scripts/enemies/enemy_database.gd" id="1_database"]
+[ext_resource type="Resource" uid="uid://burdpya0c5saq" path="res://gungeon_proto/resources/enemies/gunner.tres" id="2_gunner"]
+[ext_resource type="Resource" uid="uid://cbx3jf35f2ynk" path="res://gungeon_proto/resources/enemies/chaser.tres" id="3_chaser"]
+[ext_resource type="Resource" uid="uid://kocv7cwuqfkq" path="res://gungeon_proto/resources/enemies/spread.tres" id="4_spread"]
+[ext_resource type="Resource" uid="uid://bhwm0rs416wh2" path="res://gungeon_proto/resources/enemies/elite.tres" id="5_elite"]
+[ext_resource type="Resource" uid="uid://duh1iurx3i18h" path="res://gungeon_proto/resources/enemies/suicide_bot.tres" id="6_suicide"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/enemies/bomber.tres" id="7_bomber"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/enemies/gunner_elite.tres" id="8_gunner_elite"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/enemies/charger.tres" id="9_charger"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/enemies/shield.tres" id="10_shield"]
+
+[resource]
+script = ExtResource("1_database")
+normal_pool = Array[Resource]([ExtResource("2_gunner"), ExtResource("3_chaser"), ExtResource("4_spread"), ExtResource("6_suicide"), ExtResource("7_bomber"), ExtResource("9_charger"), ExtResource("10_shield")])
+elite_pool = Array[Resource]([ExtResource("5_elite"), ExtResource("8_gunner_elite")])

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="DungeonGenerationData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/dungeon_generation_data.gd" id="1"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/dungeon/archetype_moss_garden.tres" id="2_moss"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/dungeon/archetype_frozen_passage.tres" id="3_ice"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/dungeon/archetype_lava_forge.tres" id="4_lava"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/dungeon/archetype_void_labyrinth.tres" id="5_void"]
+
+[resource]
+script = ExtResource("1")
+base_room_count = 8
+max_bonus_rooms = 3
+generation_attempt_limit = 500
+base_enemy_count = 2
+enemy_count_per_distance = 1
+floor_difficulty_divisor = 2.0
+random_enemy_bonus_max = 1
+minimum_enemy_count = 2
+maximum_enemy_count = 7
+combat_layout_count = 6
+archetypes = Array[Resource]([ExtResource("2_moss"), ExtResource("3_ice"), ExtResource("4_lava"), ExtResource("5_void")])

@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="RoomLayoutData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/room_layout_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "combat_4"
+room_type = "combat"
+layout_id = 4
+walls = [{
+"position": Vector2(-190, -75),
+"size": Vector2(190, 24)
+}, {
+"position": Vector2(190, 20),
+"size": Vector2(190, 24)
+}, {
+"position": Vector2(-190, 110),
+"size": Vector2(190, 24)
+}]
+props = [{
+"position": Vector2(250, 120),
+"type": "pot",
+"id": "layout4_pot_a"
+}]
+explosive_barrels = [{
+"position": Vector2(120, -110),
+"id": "layout4_barrel_a"
+}, {
+"position": Vector2(-105, 60),
+"id": "layout4_barrel_b"
+}]
+saw_traps = [{
+"from": Vector2(-250, 0),
+"to": Vector2(250, 0)
+}]

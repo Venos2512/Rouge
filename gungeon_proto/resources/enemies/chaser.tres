@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://cbx3jf35f2ynk"]
+
+[ext_resource type="Script" uid="uid://d3nejnpvysgij" path="res://gungeon_proto/scripts/enemies/enemy_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/enemies/chaser.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1")
+id = "chaser"
+display_name = "Chaser"
+enemy_type = "chaser"
+scene = ExtResource("2_scene")
+spawn_weight = 1.2

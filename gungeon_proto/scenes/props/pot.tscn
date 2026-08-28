@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/props/carryable_prop.gd" id="1_prop"]
+
+[sub_resource type="RectangleShape2D" id="PotShape"]
+size = Vector2(16, 16)
+
+[node name="Pot" type="StaticBody2D"]
+script = ExtResource("1_prop")
+prop_type = "pot"
+health = 1
+destructible = true
+carryable = true
+hit_radius = 11.0
+interaction_radius = 44.0
+throw_speed = 560.0
+max_throw_time = 3.0
+throw_impact_damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("PotShape")
+
+[node name="CarryOffset" type="Marker2D" parent="."]
+position = Vector2(0, -38)
+
+[node name="PromptAnchor" type="Marker2D" parent="."]
+position = Vector2(0, -44)
+
+[node name="PromptLabel" type="Label" parent="PromptAnchor"]
+z_index = 50
+offset_left = -70.0
+offset_right = 70.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 1
+visible = false
+
+[node name="VisualRoot" type="Node2D" parent="."]
+
+[node name="Body" type="Polygon2D" parent="VisualRoot"]
+polygon = PackedVector2Array(-6, -7, 6, -7, 6, 7, -6, 7)
+color = Color(0.568627, 0.321569, 0.215686, 1)
+
+[node name="Rim" type="Polygon2D" parent="VisualRoot"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+color = Color(0.72549, 0.431373, 0.27451, 1)
+
+[node name="FlashOverlay" type="Polygon2D" parent="VisualRoot"]
+visible = false
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+color = Color(1, 0.960784, 0.862745, 1)

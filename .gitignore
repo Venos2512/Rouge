@@ -1,0 +1,12 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+.godot-user/
+
+# Local Godot editor/export installations
+/export_templates/
+
+# Exported game builds
+/*.exe
+/*.pck
+/*.zip

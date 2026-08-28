@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://bhwm0rs416wh2"]
+
+[ext_resource type="Script" uid="uid://d3nejnpvysgij" path="res://gungeon_proto/scripts/enemies/enemy_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/enemies/elite.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1")
+id = "elite"
+display_name = "Elite"
+enemy_type = "elite"
+scene = ExtResource("2_scene")
+spawn_radius = 16.0
+minimum_player_distance = 90.0

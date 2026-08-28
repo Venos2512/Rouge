@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dfkjo0ysf4j8l"]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/ui/game_ui_theme.gd" id="1_theme"]
+
+[node name="GameUITheme" type="Node" unique_id=354470873]
+script = ExtResource("1_theme")

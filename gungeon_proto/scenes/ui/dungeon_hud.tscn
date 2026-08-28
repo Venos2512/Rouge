@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://cf3yxxpgkibx0"]
+
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/ui/dungeon_minimap.tscn" id="1_minimap"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/ui/upgrade_choice_ui.tscn" id="2_upgrade"]
+[ext_resource type="Script" uid="uid://drt84nj44124i" path="res://gungeon_proto/scripts/ui/dungeon_hud_controller.gd" id="3_hud"]
+
+[node name="DungeonHUD" type="CanvasLayer" unique_id=32019210]
+layer = 100
+script = ExtResource("3_hud")
+
+[node name="Minimap" parent="." unique_id=1772135794 instance=ExtResource("1_minimap")]
+
+[node name="UpgradeChoiceUI" parent="." unique_id=2004907594 instance=ExtResource("2_upgrade")]
+
+[node name="RoomLabel" type="Label" parent="." unique_id=1434368353]
+scale = Vector2(0.82, 0.82)
+offset_left = 10.0
+offset_top = 148.0
+offset_right = 270.0
+offset_bottom = 198.0
+theme_override_font_sizes/font_size = 11
+text = "Lorem"
+
+[node name="BossLabel" type="Label" parent="." unique_id=341620011]
+scale = Vector2(0.82, 0.82)
+visible = false
+offset_left = 220.0
+offset_top = 6.0
+offset_right = 550.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 12
+text = "Lorem"
+horizontal_alignment = 1
+
+[node name="BossBar" type="ProgressBar" parent="." unique_id=1848723654]
+scale = Vector2(0.82, 0.82)
+visible = false
+offset_left = 220.0
+offset_top = 28.0
+offset_right = 550.0
+offset_bottom = 46.0
+mouse_filter = 2
+value = 100.0
+show_percentage = false
+
+[node name="GoldLabel" type="Label" parent="." unique_id=1054510250]
+scale = Vector2(0.82, 0.82)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -190.0
+offset_top = 170.0
+offset_right = -15.0
+offset_bottom = 200.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 2
+
+[node name="PlayerStatus" type="PanelContainer" parent="."]
+visible = false
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 230.0
+offset_bottom = 82.0
+
+[node name="HealthBar" type="ProgressBar" parent="PlayerStatus"]
+layout_mode = 2
+custom_minimum_size = Vector2(180, 18)
+show_percentage = false
+value = 5.0
+
+[node name="HealthLabel" type="Label" parent="PlayerStatus"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "HP  5 / 5"
+horizontal_alignment = 1
+
+[node name="WeaponHint" type="Label" parent="."]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -28.0
+offset_right = -16.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 10
+text = "TAB  INVENTORY    ESC  PAUSE"
+horizontal_alignment = 2

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://duh1iurx3i18h"]
+
+[ext_resource type="Script" uid="uid://d3nejnpvysgij" path="res://gungeon_proto/scripts/enemies/enemy_data.gd" id="1_data"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/enemies/suicide_bot.tscn" id="2_scene"]
+[ext_resource type="Texture2D" path="res://gungeon_proto/assets/icons/enemies/suicide_bot.png" id="3_icon"]
+
+[resource]
+script = ExtResource("1_data")
+id = "suicide_bot"
+display_name = "Suicide Bot"
+enemy_type = "suicide_bot"
+scene = ExtResource("2_scene")
+icon_texture = ExtResource("3_icon")
+spawn_radius = 12.0
+minimum_player_distance = 115.0

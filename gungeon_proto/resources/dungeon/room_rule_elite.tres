@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RoomRuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/room_rule_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+room_type = "elite"
+auto_cleared = false
+enemy_count_override = -1
+encounter_mode = "elite"
+reward_mode = "chest"
+chest_source = "elite"
+chest_position = Vector2(0, 0)

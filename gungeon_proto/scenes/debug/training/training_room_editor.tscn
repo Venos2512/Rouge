@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/debug/training/training_room_editor_floor.gd" id="1_floor"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/debug/training/training_camera.gd" id="2_camera"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/props/room_prop.gd" id="3_prop"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/props/carryable_explosive_barrel.gd" id="4_barrel"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/debug/training/training_dummy_runtime.gd" id="5_dummy"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/debug/training/training_turret.gd" id="6_turret"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/debug/training/training_editor_label.gd" id="7_label"]
+
+[node name="TrainingRoom" type="Node2D"]
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Floor" type="Node2D" parent="Environment"]
+script = ExtResource("1_floor")
+room_size = Vector2(1100, 700)
+
+[node name="WeaponZoneGuide" type="Node2D" parent="Environment"]
+position = Vector2(0, -230)
+script = ExtResource("7_label")
+title = "WEAPONS"
+width = 760.0
+
+[node name="CombatZoneGuide" type="Node2D" parent="Environment"]
+position = Vector2(0, 40)
+script = ExtResource("7_label")
+title = "COMBAT"
+width = 760.0
+
+[node name="PropZoneGuide" type="Node2D" parent="Environment"]
+position = Vector2(0, 225)
+script = ExtResource("7_label")
+title = "PROPS"
+width = 760.0
+
+
+[node name="CombatZone" type="Node2D" parent="."]
+
+[node name="PlayerSpawn" type="Marker2D" parent="CombatZone"]
+position = Vector2(-300, 40)
+
+[node name="TrainingDummy" type="Node2D" parent="CombatZone"]
+position = Vector2(20, 40)
+script = ExtResource("5_dummy")
+
+[node name="TrainingTurret" type="Node2D" parent="CombatZone"]
+position = Vector2(360, 40)
+script = ExtResource("6_turret")
+
+
+[node name="PropZone" type="Node2D" parent="."]
+
+[node name="Pot" type="StaticBody2D" parent="PropZone"]
+position = Vector2(-240, 250)
+script = ExtResource("3_prop")
+prop_type = "pot"
+
+[node name="Crate" type="StaticBody2D" parent="PropZone"]
+position = Vector2(-120, 250)
+script = ExtResource("3_prop")
+prop_type = "crate"
+
+[node name="ExplosiveBarrel" type="StaticBody2D" parent="PropZone"]
+position = Vector2(0, 250)
+script = ExtResource("4_barrel")
+
+[node name="Table" type="StaticBody2D" parent="PropZone"]
+position = Vector2(135, 250)
+script = ExtResource("3_prop")
+prop_type = "table"
+
+[node name="Pillar" type="StaticBody2D" parent="PropZone"]
+position = Vector2(275, 250)
+script = ExtResource("3_prop")
+prop_type = "pillar"
+
+
+[node name="WeaponRack" type="Node2D" parent="."]
+position = Vector2(0, -205)
+
+[node name="WeaponSlot01" type="Marker2D" parent="WeaponRack"]
+position = Vector2(-300, 0)
+
+[node name="WeaponSlot02" type="Marker2D" parent="WeaponRack"]
+position = Vector2(-180, 0)
+
+[node name="WeaponSlot03" type="Marker2D" parent="WeaponRack"]
+position = Vector2(-60, 0)
+
+[node name="WeaponSlot04" type="Marker2D" parent="WeaponRack"]
+position = Vector2(60, 0)
+
+[node name="WeaponSlot05" type="Marker2D" parent="WeaponRack"]
+position = Vector2(180, 0)
+
+[node name="WeaponSlot06" type="Marker2D" parent="WeaponRack"]
+position = Vector2(300, 0)
+
+
+[node name="TrainingCamera" type="Camera2D" parent="."]
+position = Vector2(0, 0)
+zoom = Vector2(1, 1)
+script = ExtResource("2_camera")

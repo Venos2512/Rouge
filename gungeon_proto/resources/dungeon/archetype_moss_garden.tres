@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DungeonArchetypeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/dungeon_archetype_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "moss_garden"
+terrain_id = "moss"
+minimum_rooms = 7
+maximum_rooms = 9
+half_width = 3
+half_height = 3
+growth_style = 3
+branch_from_latest_chance = 0.2
+combat_layout_ids = Array[int]([0, 1, 4])

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="RoomRuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/room_rule_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+room_type = "start"
+auto_cleared = true
+enemy_count_override = 0
+encounter_mode = "none"
+reward_mode = "start_loadout"
+weapon_rewards = [{
+"weapon_id": "shotgun",
+"position": Vector2(-110, 75)
+}, {
+"weapon_id": "machine_gun",
+"position": Vector2(110, 75)
+}, {
+"weapon_id": "sword",
+"position": Vector2(0, 115)
+}, {
+"weapon_id": "grenade_launcher",
+"position": Vector2(0, 185)
+}]

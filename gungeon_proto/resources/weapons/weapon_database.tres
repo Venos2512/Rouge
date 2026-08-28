@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponDatabase" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/weapons/weapon_database.gd" id="1_database"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/weapons/pistol.tres" id="2_pistol"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/weapons/shotgun.tres" id="3_shotgun"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/weapons/machine_gun.tres" id="4_machine_gun"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/weapons/sword.tres" id="5_sword"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/weapons/spear.tres" id="6_spear"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/weapons/hammer.tres" id="7_hammer"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/weapons/grenade_launcher.tres" id="8_grenade_launcher"]
+
+[resource]
+script = ExtResource("1_database")
+weapons = Array[Resource]([ExtResource("2_pistol"), ExtResource("3_shotgun"), ExtResource("4_machine_gun"), ExtResource("5_sword"), ExtResource("6_spear"), ExtResource("7_hammer"), ExtResource("8_grenade_launcher")])

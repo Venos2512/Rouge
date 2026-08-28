@@ -1,0 +1,10 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/ui/dungeon_hud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/ui/gameplay_hud.tscn" id="4_gameplay_hud"]
+
+[node name="GameUI" type="Node"]
+
+[node name="DungeonHUD" parent="." instance=ExtResource("3_hud")]
+
+[node name="GameplayHUD" parent="." instance=ExtResource("4_gameplay_hud")]

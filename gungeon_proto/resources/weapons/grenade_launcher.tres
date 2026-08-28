@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/weapons/weapon_data.gd" id="1_data"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/weapons/attacks/grenade_launcher_attack_provider.gd" id="2_attack"]
+
+[resource]
+script = ExtResource("1_data")
+id = "grenade_launcher"
+display_name = "Súng phóng lựu"
+attack_provider = ExtResource("2_attack")
+hud_icon_id = "grenade_launcher"
+pickup_color = Color(0.3, 0.46, 0.25, 1)
+damage = 5
+fire_interval = 0.9
+reload_time = 1.45
+recoil = 8.0
+magazine_size = 3
+reserve_ammo = 18
+bullet_speed = 330.0
+projectile_lifetime = 1.1
+explosion_radius = 78.0
+explosion_knockback = 220.0
+tags = Array[String](["ranged", "explosive"])

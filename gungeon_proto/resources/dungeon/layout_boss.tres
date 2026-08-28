@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="RoomLayoutData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/room_layout_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "boss"
+room_type = "boss"
+layout_id = 0
+props = [{
+"position": Vector2(-270, -125),
+"type": "pillar",
+"id": "boss_pillar_a"
+}, {
+"position": Vector2(270, -125),
+"type": "pillar",
+"id": "boss_pillar_b"
+}, {
+"position": Vector2(-270, 125),
+"type": "pillar",
+"id": "boss_pillar_c"
+}, {
+"position": Vector2(270, 125),
+"type": "pillar",
+"id": "boss_pillar_d"
+}]
+explosive_barrels = [{
+"position": Vector2(-205, 65),
+"id": "boss_barrel_a"
+}, {
+"position": Vector2(205, 65),
+"id": "boss_barrel_b"
+}]

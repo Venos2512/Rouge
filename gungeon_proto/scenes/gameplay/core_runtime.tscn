@@ -1,0 +1,129 @@
+[gd_scene load_steps=44 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/core/game_input_bootstrap.gd" id="1_input"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/debug/dev_tools.gd" id="45_dev_tools"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/core/controller_gameplay_bridge.gd" id="2_controller"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/weapons/weapon_special_controller.gd" id="3_special"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/room_navigation.gd" id="4_navigation"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/gameplay/relic_system.gd" id="5_relic"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/encounter_director.gd" id="6_encounter"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/room_boundary_blocker.gd" id="7_boundary"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/ui/weapon_stack_hud.gd" id="8_weapon_hud"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/ui/reload_progress_world.gd" id="9_reload"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/ui/game_ui.tscn" id="44_game_ui"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/ui/inventory_overlay.tscn" id="46_inventory"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/room_flow_director.gd" id="12_room_flow"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/dungeon/room_rule_database.tres" id="13_room_rules"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/dungeon/shop_config.tres" id="14_shop_config"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/dungeon_generator.gd" id="15_generator"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/room_director.gd" id="16_room_director"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/dungeon/dungeon_generation.tres" id="17_generation"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/gameplay/room_visual.tscn" id="18_renderer"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/gameplay/gameplay_spawner.gd" id="19_spawner"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/enemies/bosses/boss.tscn" id="21_boss"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/weapons/weapon_pickup.tscn" id="22_weapon_pickup"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/gameplay/floor_exit.tscn" id="23_floor_exit"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/gameplay/upgrade_chest.tscn" id="24_chest"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/gameplay/coin_pickup.tscn" id="25_coin"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/gameplay/shop_item.tscn" id="26_shop"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/gameplay/room_fx.tscn" id="27_fx"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/gameplay/damage_number.tscn" id="28_damage"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/gameplay/room_wall.tscn" id="29_wall"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/gameplay/spike_trap.tscn" id="30_spike"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/gameplay/saw_trap.tscn" id="31_saw"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/props/crate.tscn" id="32_crate"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/props/pot.tscn" id="33_pot"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/props/table.tscn" id="34_table"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/props/pillar.tscn" id="35_pillar"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/props/explosive_barrel.tscn" id="36_barrel"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/shop_director.gd" id="37_shop_director"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/reward_director.gd" id="38_reward_director"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/core/runtime_validator.gd" id="39_validator"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/core/combat_feedback_director.gd" id="40_feedback"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/ui/dungeon_presentation_director.gd" id="41_presentation"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/core/core_runtime.gd" id="42_core_runtime"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/weapons/weapon_special_catalog.tres" id="43_special_catalog"]
+
+[node name="CoreRuntime" type="Node"]
+script = ExtResource("42_core_runtime")
+
+[node name="GameInputBootstrap" type="Node" parent="."]
+script = ExtResource("1_input")
+
+[node name="DevTools" type="CanvasLayer" parent="."]
+script = ExtResource("45_dev_tools")
+
+[node name="ControllerGameplayBridge" type="Node" parent="."]
+script = ExtResource("2_controller")
+
+[node name="WeaponSpecialController" type="Node" parent="."]
+script = ExtResource("3_special")
+provider_catalog = ExtResource("43_special_catalog")
+
+[node name="RoomNavigation" type="Node" parent="."]
+script = ExtResource("4_navigation")
+
+[node name="RelicSystem" type="Node" parent="."]
+script = ExtResource("5_relic")
+
+[node name="EncounterDirector" type="Node" parent="."]
+script = ExtResource("6_encounter")
+
+[node name="RoomFlowDirector" type="Node" parent="."]
+script = ExtResource("12_room_flow")
+room_rules = ExtResource("13_room_rules")
+shop_config = ExtResource("14_shop_config")
+
+[node name="DungeonGenerator" type="Node" parent="."]
+script = ExtResource("15_generator")
+generation_data = ExtResource("17_generation")
+room_rules = ExtResource("13_room_rules")
+
+[node name="RoomDirector" type="Node" parent="."]
+script = ExtResource("16_room_director")
+
+[node name="RoomVisualRenderer" parent="." instance=ExtResource("18_renderer")]
+
+[node name="GameplaySpawner" type="Node" parent="."]
+script = ExtResource("19_spawner")
+boss_scene = ExtResource("21_boss")
+weapon_pickup_scene = ExtResource("22_weapon_pickup")
+floor_exit_scene = ExtResource("23_floor_exit")
+upgrade_chest_scene = ExtResource("24_chest")
+coin_pickup_scene = ExtResource("25_coin")
+shop_item_scene = ExtResource("26_shop")
+room_fx_scene = ExtResource("27_fx")
+damage_number_scene = ExtResource("28_damage")
+room_wall_scene = ExtResource("29_wall")
+spike_trap_scene = ExtResource("30_spike")
+saw_trap_scene = ExtResource("31_saw")
+crate_scene = ExtResource("32_crate")
+pot_scene = ExtResource("33_pot")
+table_scene = ExtResource("34_table")
+pillar_scene = ExtResource("35_pillar")
+explosive_barrel_scene = ExtResource("36_barrel")
+
+[node name="ShopDirector" type="Node" parent="."]
+script = ExtResource("37_shop_director")
+
+[node name="RewardDirector" type="Node" parent="."]
+script = ExtResource("38_reward_director")
+
+[node name="RuntimeValidator" type="Node" parent="."]
+script = ExtResource("39_validator")
+
+[node name="CombatFeedbackDirector" type="Node" parent="."]
+script = ExtResource("40_feedback")
+
+[node name="DungeonPresentationDirector" type="Node" parent="."]
+script = ExtResource("41_presentation")
+
+[node name="RoomBoundaryBlocker" type="Node2D" parent="."]
+script = ExtResource("7_boundary")
+
+[node name="ReloadProgressWorld" type="Node2D" parent="."]
+script = ExtResource("9_reload")
+
+[node name="GameUI" parent="." instance=ExtResource("44_game_ui")]
+
+[node name="InventoryOverlay" parent="." instance=ExtResource("46_inventory")]

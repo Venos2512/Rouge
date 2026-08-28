@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/ui/dungeon_minimap_m5.gd" id="1_minimap"]
+
+[node name="Minimap" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 210.0
+offset_bottom = 110.0
+mouse_filter = 2
+script = ExtResource("1_minimap")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/enemies/base/enemy_actor_base.gd" id="1_enemy"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/enemies/base/enemy_data_binding.gd" id="2_binding"]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_enemy")
+
+[node name="EnemyDataBinding" type="Node" parent="."]
+script = ExtResource("2_binding")

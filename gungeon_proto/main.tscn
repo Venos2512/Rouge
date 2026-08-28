@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b6bt1xoul28hn"]
+
+[ext_resource type="Script" uid="uid://cue4xqguedl5u" path="res://gungeon_proto/scripts/core/dungeon_main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/actors/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/gameplay/core_runtime.tscn" id="3_core"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/audio/audio_director.gd" id="4_audio"]
+
+[node name="Main" type="Node2D" unique_id=620393725]
+script = ExtResource("1_main")
+
+[node name="Player" parent="." unique_id=1085420674 instance=ExtResource("2_player")]
+
+[node name="CoreRuntime" parent="." unique_id=2029107118 instance=ExtResource("3_core")]
+
+[node name="AudioDirector" type="Node" parent="."]
+script = ExtResource("4_audio")

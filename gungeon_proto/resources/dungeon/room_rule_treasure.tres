@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="RoomRuleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/room_rule_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+room_type = "treasure"
+auto_cleared = false
+enemy_count_override = -1
+encounter_mode = "normal"
+reward_mode = "priority_weapon_or_chest"
+chest_source = "treasure"
+chest_position = Vector2(0, 0)
+weapon_rewards = [{
+"weapon_id": "shotgun",
+"position": Vector2(0, 0)
+}, {
+"weapon_id": "machine_gun",
+"position": Vector2(0, 0)
+}, {
+"weapon_id": "sword",
+"position": Vector2(0, 0)
+}, {
+"weapon_id": "grenade_launcher",
+"position": Vector2(0, 0)
+}]

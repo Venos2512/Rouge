@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/enemies/enemy_data.gd" id="1_data"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/scenes/enemies/shield.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_data")
+id = "shield"
+display_name = "Shield"
+enemy_type = "shield"
+scene = ExtResource("2_scene")
+spawn_weight = 0.7
+spawn_radius = 15.0
+minimum_player_distance = 84.0

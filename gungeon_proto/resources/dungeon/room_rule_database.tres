@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RoomRuleDatabase" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/dungeon/room_rule_database.gd" id="1_database"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/dungeon/room_rule_start.tres" id="2_start"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/dungeon/room_rule_combat.tres" id="3_combat"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/dungeon/room_rule_elite.tres" id="4_elite"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/dungeon/room_rule_treasure.tres" id="5_treasure"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/dungeon/room_rule_shop.tres" id="6_shop"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/dungeon/room_rule_boss.tres" id="7_boss"]
+
+[resource]
+script = ExtResource("1_database")
+rules = Array[Resource]([ExtResource("2_start"), ExtResource("3_combat"), ExtResource("4_elite"), ExtResource("5_treasure"), ExtResource("6_shop"), ExtResource("7_boss")])

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="RoomVisualTheme" load_steps=4 format=3 uid="uid://dhpchhfxiodbx"]
+
+[ext_resource type="Script" uid="uid://bgeyq2xlsusi3" path="res://gungeon_proto/scripts/dungeon/room_visual_theme.gd" id="1"]
+[ext_resource type="Texture2D" path="res://gungeon_proto/assets/sample/world_background_sample.png" id="2_background"]
+[ext_resource type="Texture2D" path="res://gungeon_proto/assets/sample/room_floor_sample.png" id="3_floor"]
+
+[resource]
+script = ExtResource("1")
+world_background_texture = ExtResource("2_background")
+world_background = Color(0.0470588, 0.0470588, 0.0705882, 1)
+floor_texture = ExtResource("3_floor")
+floor_default = Color(0.152941, 0.164706, 0.203922, 1)
+floor_treasure = Color(0.192157, 0.176471, 0.152941, 1)
+floor_elite = Color(0.196078, 0.14902, 0.137255, 1)
+floor_boss = Color(0.176471, 0.117647, 0.145098, 1)
+floor_shop = Color(0.121569, 0.188235, 0.180392, 1)
+floor_moss = Color(0.152941, 0.223529, 0.168627, 1)
+floor_ice = Color(0.152941, 0.215686, 0.266667, 1)
+floor_lava = Color(0.266667, 0.152941, 0.12549, 1)
+floor_void = Color(0.164706, 0.133333, 0.243137, 1)
+grid_color = Color(0.19846848, 0.20154855, 0.2100088, 1)
+outer_border_color = Color(0.4, 0.356863, 0.329412, 1)
+inner_border_color = Color(0.227451, 0.211765, 0.227451, 1)
+door_locked_color = Color(0.439216, 0.211765, 0.176471, 1)
+door_open_color = Color(0.882353, 0.721569, 0.305882, 1)

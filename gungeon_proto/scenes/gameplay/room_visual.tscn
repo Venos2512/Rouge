@@ -1,0 +1,286 @@
+[gd_scene format=3 uid="uid://chdfaqmnot8bi"]
+
+[ext_resource type="Script" uid="uid://c7ih5iy7lf1fb" path="res://gungeon_proto/scripts/dungeon/room_visual_scene_controller.gd" id="1_controller"]
+[ext_resource type="Resource" path="res://gungeon_proto/resources/dungeon/room_visual_theme.tres" id="2_theme"]
+
+[node name="RoomVisualRenderer" type="Node2D" unique_id=263637543]
+z_index = -100
+script = ExtResource("1_controller")
+theme_data = ExtResource("2_theme")
+
+[node name="WorldBackground" type="Polygon2D" parent="." unique_id=434117998]
+color = Color(0.0470588, 0.0470588, 0.0705882, 1)
+polygon = PackedVector2Array(-2000, -2000, 2000, -2000, 2000, 2000, -2000, 2000)
+
+[node name="RoomFloor" type="Polygon2D" parent="." unique_id=1919114446]
+color = Color(0.152941, 0.164706, 0.203922, 1)
+polygon = PackedVector2Array(-384, -216, 384, -216, 384, 216, -384, 216)
+
+[node name="Grid" type="Node2D" parent="." unique_id=1631431960]
+
+[node name="V00" type="Line2D" parent="Grid" unique_id=847375090]
+points = PackedVector2Array(-384, -216, -384, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V01" type="Line2D" parent="Grid" unique_id=740640579]
+points = PackedVector2Array(-352, -216, -352, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V02" type="Line2D" parent="Grid" unique_id=1034123470]
+points = PackedVector2Array(-320, -216, -320, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V03" type="Line2D" parent="Grid" unique_id=2061274922]
+points = PackedVector2Array(-288, -216, -288, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V04" type="Line2D" parent="Grid" unique_id=717859055]
+points = PackedVector2Array(-256, -216, -256, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V05" type="Line2D" parent="Grid" unique_id=1385533133]
+points = PackedVector2Array(-224, -216, -224, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V06" type="Line2D" parent="Grid" unique_id=901234528]
+points = PackedVector2Array(-192, -216, -192, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V07" type="Line2D" parent="Grid" unique_id=1231805419]
+points = PackedVector2Array(-160, -216, -160, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V08" type="Line2D" parent="Grid" unique_id=48257686]
+points = PackedVector2Array(-128, -216, -128, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V09" type="Line2D" parent="Grid" unique_id=1483078489]
+points = PackedVector2Array(-96, -216, -96, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V10" type="Line2D" parent="Grid" unique_id=476013549]
+points = PackedVector2Array(-64, -216, -64, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V11" type="Line2D" parent="Grid" unique_id=1116406031]
+points = PackedVector2Array(-32, -216, -32, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V12" type="Line2D" parent="Grid" unique_id=853683785]
+points = PackedVector2Array(0, -216, 0, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V13" type="Line2D" parent="Grid" unique_id=1292546680]
+points = PackedVector2Array(32, -216, 32, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V14" type="Line2D" parent="Grid" unique_id=1600274928]
+points = PackedVector2Array(64, -216, 64, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V15" type="Line2D" parent="Grid" unique_id=537870615]
+points = PackedVector2Array(96, -216, 96, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V16" type="Line2D" parent="Grid" unique_id=1549921034]
+points = PackedVector2Array(128, -216, 128, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V17" type="Line2D" parent="Grid" unique_id=193216594]
+points = PackedVector2Array(160, -216, 160, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V18" type="Line2D" parent="Grid" unique_id=1230921066]
+points = PackedVector2Array(192, -216, 192, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V19" type="Line2D" parent="Grid" unique_id=913256927]
+points = PackedVector2Array(224, -216, 224, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V20" type="Line2D" parent="Grid" unique_id=1710381996]
+points = PackedVector2Array(256, -216, 256, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V21" type="Line2D" parent="Grid" unique_id=716689679]
+points = PackedVector2Array(288, -216, 288, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V22" type="Line2D" parent="Grid" unique_id=1198181411]
+points = PackedVector2Array(320, -216, 320, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V23" type="Line2D" parent="Grid" unique_id=1169884184]
+points = PackedVector2Array(352, -216, 352, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="V24" type="Line2D" parent="Grid" unique_id=158293149]
+points = PackedVector2Array(384, -216, 384, 216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="H00" type="Line2D" parent="Grid" unique_id=1838726661]
+points = PackedVector2Array(-384, -216, 384, -216)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="H01" type="Line2D" parent="Grid" unique_id=1416271619]
+points = PackedVector2Array(-384, -184, 384, -184)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="H02" type="Line2D" parent="Grid" unique_id=11124094]
+points = PackedVector2Array(-384, -152, 384, -152)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="H03" type="Line2D" parent="Grid" unique_id=282377315]
+points = PackedVector2Array(-384, -120, 384, -120)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="H04" type="Line2D" parent="Grid" unique_id=196362590]
+points = PackedVector2Array(-384, -88, 384, -88)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="H05" type="Line2D" parent="Grid" unique_id=1842628838]
+points = PackedVector2Array(-384, -56, 384, -56)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="H06" type="Line2D" parent="Grid" unique_id=791141510]
+points = PackedVector2Array(-384, -24, 384, -24)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="H07" type="Line2D" parent="Grid" unique_id=494580124]
+points = PackedVector2Array(-384, 8, 384, 8)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="H08" type="Line2D" parent="Grid" unique_id=2083923015]
+points = PackedVector2Array(-384, 40, 384, 40)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="H09" type="Line2D" parent="Grid" unique_id=775182650]
+points = PackedVector2Array(-384, 72, 384, 72)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="H10" type="Line2D" parent="Grid" unique_id=1047939205]
+points = PackedVector2Array(-384, 104, 384, 104)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="H11" type="Line2D" parent="Grid" unique_id=426004393]
+points = PackedVector2Array(-384, 136, 384, 136)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="H12" type="Line2D" parent="Grid" unique_id=2054917162]
+points = PackedVector2Array(-384, 168, 384, 168)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="H13" type="Line2D" parent="Grid" unique_id=351631482]
+points = PackedVector2Array(-384, 200, 384, 200)
+width = 1.0
+default_color = Color(0.188235, 0.2, 0.247059, 1)
+
+[node name="OuterBorder" type="Line2D" parent="." unique_id=2063060173]
+points = PackedVector2Array(-384, -216, 384, -216, 384, 216, -384, 216)
+closed = true
+width = 12.0
+default_color = Color(0.4, 0.356863, 0.329412, 1)
+
+[node name="InnerBorder" type="Line2D" parent="." unique_id=119982942]
+points = PackedVector2Array(-372, -204, 372, -204, 372, 204, -372, 204)
+closed = true
+width = 4.0
+default_color = Color(0.227451, 0.211765, 0.227451, 1)
+
+[node name="DoorUp" type="Node2D" parent="." unique_id=344749670]
+visible = false
+
+[node name="OpenCover" type="Polygon2D" parent="DoorUp" unique_id=651053384]
+color = Color(0.152941, 0.164706, 0.203922, 1)
+polygon = PackedVector2Array(-31, -225, 31, -225, 31, -203, -31, -203)
+
+[node name="OpenMarker" type="Polygon2D" parent="DoorUp" unique_id=865236061]
+color = Color(0.882353, 0.721569, 0.305882, 1)
+polygon = PackedVector2Array(-24, -213, 24, -213, 24, -209, -24, -209)
+
+[node name="Locked" type="Polygon2D" parent="DoorUp" unique_id=1620831053]
+color = Color(0.439216, 0.211765, 0.176471, 1)
+polygon = PackedVector2Array(-30, -223, 30, -223, 30, -206, -30, -206)
+
+[node name="DoorDown" type="Node2D" parent="." unique_id=851251626]
+visible = false
+
+[node name="OpenCover" type="Polygon2D" parent="DoorDown" unique_id=1694606572]
+color = Color(0.152941, 0.164706, 0.203922, 1)
+polygon = PackedVector2Array(-31, 203, 31, 203, 31, 225, -31, 225)
+
+[node name="OpenMarker" type="Polygon2D" parent="DoorDown" unique_id=711395939]
+color = Color(0.882353, 0.721569, 0.305882, 1)
+polygon = PackedVector2Array(-24, 209, 24, 209, 24, 213, -24, 213)
+
+[node name="Locked" type="Polygon2D" parent="DoorDown" unique_id=1251479913]
+color = Color(0.439216, 0.211765, 0.176471, 1)
+polygon = PackedVector2Array(-30, 206, 30, 206, 30, 223, -30, 223)
+
+[node name="DoorLeft" type="Node2D" parent="." unique_id=974219727]
+visible = false
+
+[node name="OpenCover" type="Polygon2D" parent="DoorLeft" unique_id=1638040299]
+color = Color(0.152941, 0.164706, 0.203922, 1)
+polygon = PackedVector2Array(-393, -31, -371, -31, -371, 31, -393, 31)
+
+[node name="OpenMarker" type="Polygon2D" parent="DoorLeft" unique_id=1722610630]
+color = Color(0.882353, 0.721569, 0.305882, 1)
+polygon = PackedVector2Array(-381, -24, -377, -24, -377, 24, -381, 24)
+
+[node name="Locked" type="Polygon2D" parent="DoorLeft" unique_id=2134729697]
+color = Color(0.439216, 0.211765, 0.176471, 1)
+polygon = PackedVector2Array(-391, -30, -374, -30, -374, 30, -391, 30)
+
+[node name="DoorRight" type="Node2D" parent="." unique_id=2009115822]
+visible = false
+
+[node name="OpenCover" type="Polygon2D" parent="DoorRight" unique_id=61397233]
+color = Color(0.152941, 0.164706, 0.203922, 1)
+polygon = PackedVector2Array(371, -31, 393, -31, 393, 31, 371, 31)
+
+[node name="OpenMarker" type="Polygon2D" parent="DoorRight" unique_id=501221452]
+color = Color(0.882353, 0.721569, 0.305882, 1)
+polygon = PackedVector2Array(377, -24, 381, -24, 381, 24, 377, 24)
+
+[node name="Locked" type="Polygon2D" parent="DoorRight" unique_id=1737653144]
+color = Color(0.439216, 0.211765, 0.176471, 1)
+polygon = PackedVector2Array(374, -30, 391, -30, 391, 30, 374, 30)

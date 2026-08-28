@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/props/carryable_explosive_barrel.gd" id="1_barrel"]
+
+[sub_resource type="RectangleShape2D" id="BarrelShape"]
+size = Vector2(22, 28)
+
+[node name="ExplosiveBarrel" type="StaticBody2D"]
+script = ExtResource("1_barrel")
+hit_radius = 15.0
+interaction_radius = 44.0
+fuse_duration = 0.32
+explosion_radius = 95.0
+explosion_damage = 4
+throw_speed = 580.0
+max_throw_time = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("BarrelShape")
+
+[node name="CarryOffset" type="Marker2D" parent="."]
+position = Vector2(0, -40)
+
+[node name="PromptAnchor" type="Marker2D" parent="."]
+position = Vector2(0, -46)
+
+[node name="PromptLabel" type="Label" parent="PromptAnchor"]
+z_index = 50
+offset_left = -82.0
+offset_right = 82.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 1
+visible = false
+
+[node name="ExplosionOrigin" type="Marker2D" parent="."]
+
+[node name="VisualRoot" type="Node2D" parent="."]
+
+[node name="Shadow" type="Polygon2D" parent="VisualRoot"]
+polygon = PackedVector2Array(-12, 11, 12, 11, 12, 16, -12, 16)
+color = Color(0.031373, 0.031373, 0.047059, 0.588235)
+
+[node name="Body" type="Polygon2D" parent="VisualRoot"]
+polygon = PackedVector2Array(-10, -14, 10, -14, 10, 14, -10, 14)
+color = Color(0.647059, 0.188235, 0.156863, 1)
+
+[node name="TopBand" type="Polygon2D" parent="VisualRoot"]
+polygon = PackedVector2Array(-11, -10, 11, -10, 11, -6, -11, -6)
+color = Color(0.254902, 0.196078, 0.188235, 1)
+
+[node name="BottomBand" type="Polygon2D" parent="VisualRoot"]
+polygon = PackedVector2Array(-11, 6, 11, 6, 11, 10, -11, 10)
+color = Color(0.254902, 0.196078, 0.188235, 1)
+
+[node name="WarningStripe" type="Polygon2D" parent="VisualRoot"]
+polygon = PackedVector2Array(-2, -7, 2, -7, 2, 3, -2, 3)
+color = Color(1, 0.862745, 0.352941, 1)
+
+[node name="WarningStripeBottom" type="Polygon2D" parent="VisualRoot"]
+polygon = PackedVector2Array(-2, 6, 2, 6, 2, 9, -2, 9)
+color = Color(1, 0.862745, 0.352941, 1)
+
+[node name="BlinkOverlay" type="Polygon2D" parent="VisualRoot"]
+visible = false
+polygon = PackedVector2Array(-10, -14, 10, -14, 10, 14, -10, 14)
+color = Color(1, 0.843137, 0.27451, 0.9)
+
+[node name="FuseRing" type="Line2D" parent="."]
+z_index = 1
+visible = false
+width = 2.0
+default_color = Color(1, 0.22, 0.08, 0.45)
