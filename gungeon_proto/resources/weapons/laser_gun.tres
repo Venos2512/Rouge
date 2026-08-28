@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/weapons/weapon_data.gd" id="1_data"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/weapons/attacks/laser_beam_attack_provider.gd" id="2_attack"]
+
+[resource]
+script = ExtResource("1_data")
+id = "laser_gun"
+display_name = "Súng Laser"
+automatic = true
+attack_provider = ExtResource("2_attack")
+hud_icon_id = "laser_gun"
+pickup_color = Color(0.18, 0.72, 0.9, 1)
+damage = 1
+damage_type = "shock"
+fire_interval = 0.08
+reload_time = 1.2
+recoil = 0.35
+magazine_size = 45
+reserve_ammo = 180
+beam_range = 620.0
+beam_width = 7.0
+tags = Array[String](["ranged", "beam", "energy"])

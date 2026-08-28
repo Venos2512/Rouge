@@ -14,6 +14,9 @@ const WEAPON_RESOURCE_PATHS: Array[String] = [
 	"res://gungeon_proto/resources/weapons/pistol.tres",
 	"res://gungeon_proto/resources/weapons/shotgun.tres",
 	"res://gungeon_proto/resources/weapons/machine_gun.tres",
+	"res://gungeon_proto/resources/weapons/grenade_launcher.tres",
+	"res://gungeon_proto/resources/weapons/crossbow.tres",
+	"res://gungeon_proto/resources/weapons/laser_gun.tres",
 	"res://gungeon_proto/resources/weapons/sword.tres",
 	"res://gungeon_proto/resources/weapons/spear.tres",
 	"res://gungeon_proto/resources/weapons/hammer.tres",
@@ -639,6 +642,11 @@ func _validate_primary_attack_execution(
 		"pistol",
 		"shotgun",
 		"machine_gun",
+		"grenade_launcher",
+		"crossbow",
+	]
+	var beam_ids: Array[String] = [
+		"laser_gun",
 	]
 	var melee_ids: Array[String] = [
 		"sword",
@@ -646,7 +654,7 @@ func _validate_primary_attack_execution(
 		"hammer",
 	]
 
-	for weapon_id: String in ranged_ids + melee_ids:
+	for weapon_id: String in ranged_ids + beam_ids + melee_ids:
 		weapon_system.call(
 			"unlock_and_equip",
 			weapon_id
@@ -686,6 +694,14 @@ func _validate_primary_attack_execution(
 		):
 			failures.append(
 				"Melee provider tạo projectile ngoài ý muốn: " + weapon_id
+			)
+
+		if (
+			beam_ids.has(weapon_id)
+			and bullets_after != bullets_before
+		):
+			failures.append(
+				"Beam provider tạo projectile ngoài ý muốn: " + weapon_id
 			)
 
 	for bullet: Node in get_nodes_in_group(

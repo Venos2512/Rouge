@@ -103,6 +103,8 @@ func _enter_training_room() -> void:
 			"pistol",
 			"shotgun",
 			"machine_gun",
+			"crossbow",
+			"laser_gun",
 			"sword",
 			"spear",
 			"hammer"
@@ -562,6 +564,8 @@ func _sort_weapon_ids(
 		"pistol",
 		"shotgun",
 		"machine_gun",
+		"crossbow",
+		"laser_gun",
 		"sword",
 		"spear",
 		"hammer"
