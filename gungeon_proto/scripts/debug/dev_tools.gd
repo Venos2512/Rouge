@@ -501,6 +501,7 @@ func _find_weapon_ids(
 		"pistol",
 		"shotgun",
 		"machine_gun",
+		"crossbow",
 		"sword",
 		"spear",
 		"hammer"

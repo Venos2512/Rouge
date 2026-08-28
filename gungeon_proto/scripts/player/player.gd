@@ -804,6 +804,8 @@ func _shoot() -> void:
 			GameAudio.play(self, "shotgun_fire", 0.02)
 		"grenade_launcher":
 			GameAudio.play(self, "shotgun_fire", 0.02)
+		"crossbow":
+			GameAudio.play(self, "pistol_fire", 0.025)
 
 	fire_timer = float(
 		result.get(
