@@ -35,6 +35,10 @@ var damage_type: String = "physical"
 @export var pellets: int = 1
 @export var spread_deg: float = 0.0
 
+@export_group("Beam")
+@export var beam_range: float = 620.0
+@export var beam_width: float = 5.0
+
 @export_group("Explosive Projectile")
 @export var projectile_lifetime: float = 1.1
 @export var explosion_radius: float = 0.0
@@ -82,6 +86,8 @@ func to_runtime_dictionary() -> Dictionary:
 		"bullet_speed": bullet_speed,
 		"pellets": pellets,
 		"spread_deg": spread_deg,
+		"beam_range": beam_range,
+		"beam_width": beam_width,
 		"projectile_lifetime": projectile_lifetime,
 		"explosion_radius": explosion_radius,
 		"explosion_knockback": explosion_knockback,

@@ -9,15 +9,17 @@ func tick(
 	delta: float
 ) -> void:
 	for provider_value: Variant in providers.values():
-		var provider: Node = provider_value as Node
-
-		if is_instance_valid(
-			provider
+		if (
+			typeof(provider_value) != TYPE_OBJECT
+			or not is_instance_valid(provider_value)
 		):
-			provider.call(
-				"tick",
-				delta
-			)
+			continue
+
+		var provider: Node = provider_value as Node
+		provider.call(
+			"tick",
+			delta
+		)
 
 
 func attack_current(
@@ -118,12 +120,16 @@ func _get_or_create_provider(
 	if providers.has(
 		provider_key
 	):
-		var existing: Node = providers[provider_key] as Node
+		var existing_value: Variant = providers[provider_key]
 
-		if is_instance_valid(
-			existing
+		if (
+			typeof(existing_value) == TYPE_OBJECT
+			and is_instance_valid(existing_value)
 		):
+			var existing: Node = existing_value as Node
 			return existing
+
+		providers.erase(provider_key)
 
 	var provider: Node = provider_script.new() as Node
 
