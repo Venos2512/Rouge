@@ -6,7 +6,7 @@ Thêm Laser Rifle bắn tia năng lượng liên tục khi người chơi giữ 
 
 ## File thêm/sửa
 
-- Thêm resource, icon asset, HUD icon và attack provider riêng cho Laser Rifle.
+- Thêm resource, HUD icon và attack provider riêng cho Laser Rifle.
 - Mở rộng `WeaponData` với cấu hình tầm và độ rộng beam.
 - Đăng ký súng trong weapon database và các pool phần thưởng start/treasure.
 
@@ -49,3 +49,12 @@ Thêm Laser Rifle bắn tia năng lượng liên tục khi người chơi giữ 
 - Trước: 5 pickup khởi đầu tạo 5 lần tìm toàn SceneTree mỗi frame.
 - Sau: tối đa một lần tìm cho mỗi pickup khi spawn, không có tree scan mỗi frame
   trong trạng thái bình thường.
+
+## Loại bỏ công việc tải tầng không cần thiết
+
+- Laser Rifle không còn tạo thêm pickup thứ năm trong mọi phòng bắt đầu; súng thay
+  vị trí Grenade Launcher trong loadout và cả hai vẫn nằm trong pool treasure.
+- Xóa SVG được tham chiếu trực tiếp từ weapon database nhưng không được HUD sử
+  dụng. HUD tiếp tục dùng icon vẽ bằng code, vì hệ thống hiện chỉ tìm texture PNG.
+- Số pickup loadout khi bắt đầu tầng trở về mức trước khi thêm Laser Rifle: 5 → 4.
+- Việc tải weapon database không còn đồng bộ load/rasterize SVG của Laser Rifle.

@@ -1,9 +1,7 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=4 format=3]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://gungeon_proto/scripts/weapons/weapon_data.gd" id="1_data"]
 [ext_resource type="Script" path="res://gungeon_proto/scripts/weapons/attacks/laser_beam_attack_provider.gd" id="2_attack"]
-[ext_resource type="Texture2D" path="res://gungeon_proto/assets/icons/weapons/weapon_laser_rifle.svg" id="3_icon"]
-
 [resource]
 script = ExtResource("1_data")
 id = "laser_rifle"
@@ -11,7 +9,6 @@ display_name = "Laser Rifle"
 automatic = true
 attack_provider = ExtResource("2_attack")
 hud_icon_id = "laser_rifle"
-icon_texture = ExtResource("3_icon")
 pickup_color = Color(0.18, 0.76, 1, 1)
 damage = 2
 damage_type = "shock"
@@ -23,4 +20,3 @@ reserve_ammo = 160
 beam_range = 620.0
 beam_width = 5.0
 tags = Array[String](["ranged", "beam", "energy"])
-
