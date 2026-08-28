@@ -14,6 +14,8 @@ const WEAPON_RESOURCE_PATHS: Array[String] = [
 	"res://gungeon_proto/resources/weapons/pistol.tres",
 	"res://gungeon_proto/resources/weapons/shotgun.tres",
 	"res://gungeon_proto/resources/weapons/machine_gun.tres",
+	"res://gungeon_proto/resources/weapons/grenade_launcher.tres",
+	"res://gungeon_proto/resources/weapons/crossbow.tres",
 	"res://gungeon_proto/resources/weapons/sword.tres",
 	"res://gungeon_proto/resources/weapons/spear.tres",
 	"res://gungeon_proto/resources/weapons/hammer.tres",
@@ -639,6 +641,8 @@ func _validate_primary_attack_execution(
 		"pistol",
 		"shotgun",
 		"machine_gun",
+		"grenade_launcher",
+		"crossbow",
 	]
 	var melee_ids: Array[String] = [
 		"sword",

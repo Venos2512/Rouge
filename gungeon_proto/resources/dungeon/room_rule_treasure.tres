@@ -23,4 +23,7 @@ weapon_rewards = [{
 }, {
 "weapon_id": "grenade_launcher",
 "position": Vector2(0, 0)
+}, {
+"weapon_id": "crossbow",
+"position": Vector2(0, 0)
 }]
