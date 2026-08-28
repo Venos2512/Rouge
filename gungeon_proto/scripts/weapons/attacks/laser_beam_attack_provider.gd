@@ -14,10 +14,13 @@ const DamageTypesScript = preload(
 
 const MUZZLE_DISTANCE: float = 18.0
 const BEAM_VISIBLE_TIME: float = 0.11
+const DEFAULT_ENEMY_HIT_RADIUS: float = 14.0
 
 var beam_time_left: float = 0.0
 var beam_start_local: Vector2 = Vector2.ZERO
 var beam_end_local: Vector2 = Vector2.ZERO
+
+var crowd_service: Node = null
 
 
 func tick(delta: float) -> void:
@@ -38,6 +41,7 @@ func perform_attack(
 	var beam_range: float = float(weapon.get("beam_range", 620.0))
 	var origin: Vector2 = player.global_position + direction * MUZZLE_DISTANCE
 	var target: Vector2 = origin + direction * beam_range
+	var physics_collider: Node = null
 	var query := PhysicsRayQueryParameters2D.create(origin, target)
 	query.exclude = [player.get_rid()]
 	query.collide_with_areas = true
@@ -54,8 +58,24 @@ func perform_attack(
 			typeof(collider_value) == TYPE_OBJECT
 			and is_instance_valid(collider_value)
 		):
-			var collider: Node = collider_value as Node
-			_apply_beam_damage(player, collider, weapon, target, direction)
+			physics_collider = collider_value as Node
+
+	# Phần lớn enemy hiện dùng hit-radius như projectile, không có physics
+	# CollisionShape2D. Vì vậy raycast chỉ dùng để chặn beam bởi tường/prop;
+	# enemy được chọn bằng cùng crowd service mà Bullet đang sử dụng.
+	var max_hit_distance: float = origin.distance_to(target)
+	var enemy: Node2D = _find_first_enemy_on_beam(
+		player,
+		origin,
+		direction,
+		max_hit_distance,
+		float(weapon.get("beam_width", 5.0))
+	)
+	if is_instance_valid(enemy):
+		target = origin + direction * origin.distance_to(enemy.global_position)
+		_apply_beam_damage(player, enemy, weapon, target, direction)
+	elif is_instance_valid(physics_collider):
+		_apply_beam_damage(player, physics_collider, weapon, target, direction)
 
 	beam_start_local = origin - player.global_position
 	beam_end_local = target - player.global_position
@@ -110,3 +130,56 @@ func _apply_beam_damage(
 	info.hit_position = hit_position
 	info.hit_direction = direction
 	DamageResolverScript.apply_damage(target, info)
+
+
+func _find_first_enemy_on_beam(
+	player: Node2D,
+	origin: Vector2,
+	direction: Vector2,
+	max_distance: float,
+	beam_width: float
+) -> Node2D:
+	if not is_instance_valid(crowd_service):
+		crowd_service = player.get_tree().get_first_node_in_group(
+			"enemy_crowd_service"
+		)
+
+	var candidates: Array = []
+	if (
+		is_instance_valid(crowd_service)
+		and crowd_service.has_method("get_enemies_near")
+	):
+		candidates = crowd_service.call(
+			"get_enemies_near",
+			origin + direction * max_distance * 0.5,
+			max_distance * 0.5 + DEFAULT_ENEMY_HIT_RADIUS
+		)
+	else:
+		candidates = player.get_tree().get_nodes_in_group("enemies")
+
+	var closest_enemy: Node2D = null
+	var closest_distance: float = max_distance + 1.0
+	for enemy_value: Variant in candidates:
+		if (
+			typeof(enemy_value) != TYPE_OBJECT
+			or not is_instance_valid(enemy_value)
+			or not enemy_value is Node2D
+		):
+			continue
+
+		var enemy: Node2D = enemy_value as Node2D
+		var offset: Vector2 = enemy.global_position - origin
+		var forward_distance: float = offset.dot(direction)
+		if forward_distance < 0.0 or forward_distance > max_distance:
+			continue
+
+		var perpendicular_distance: float = absf(offset.cross(direction))
+		var enemy_radius: float = DEFAULT_ENEMY_HIT_RADIUS
+		if perpendicular_distance > enemy_radius + beam_width * 0.5:
+			continue
+
+		if forward_distance < closest_distance:
+			closest_distance = forward_distance
+			closest_enemy = enemy
+
+	return closest_enemy

@@ -58,3 +58,10 @@ Thêm Laser Rifle bắn tia năng lượng liên tục khi người chơi giữ 
   dụng. HUD tiếp tục dùng icon vẽ bằng code, vì hệ thống hiện chỉ tìm texture PNG.
 - Số pickup loadout khi bắt đầu tầng trở về mức trước khi thêm Laser Rifle: 5 → 4.
 - Việc tải weapon database không còn đồng bộ load/rasterize SVG của Laser Rifle.
+
+## Khôi phục damage của beam
+
+- Raycast vật lý tiếp tục giới hạn beam ở tường và prop.
+- Enemy được phát hiện bằng `EnemyCrowdService` và hit-radius, giống projectile hiện
+  tại, vì phần lớn scene enemy không có `CollisionShape2D` để physics raycast trả về.
+- Beam chọn enemy gần nhất trên đoạn tia và không gây damage xuyên qua tường.
