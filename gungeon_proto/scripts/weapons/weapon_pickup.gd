@@ -15,9 +15,14 @@ var e_key_was_down: bool = false
 
 var label: Label
 
+var cached_player: Node2D = null
+
+var player_retry_timer: float = 0.0
+
 
 func _ready() -> void:
 	add_to_group("room_pickups")
+	_cache_player()
 
 	label = Label.new()
 
@@ -40,59 +45,76 @@ func _ready() -> void:
 	queue_redraw()
 
 
-func _process(_delta: float) -> void:
-	var player = get_tree().get_first_node_in_group(
-		"player"
-	)
+func _process(delta: float) -> void:
+	if not is_instance_valid(cached_player):
+		player_retry_timer -= delta
+		if player_retry_timer <= 0.0:
+			_cache_player()
+
+		if not is_instance_valid(cached_player):
+			label.visible = false
+			e_key_was_down = false
+			return
 
 	var e_key_down: bool = Input.is_key_pressed(
 		KEY_E
 	)
 
-	if is_instance_valid(player):
-		var player_node: Node2D = player as Node2D
+	var distance: float = global_position.distance_to(
+		cached_player.global_position
+	)
 
-		var distance: float = global_position.distance_to(
-			player_node.global_position
-		)
+	if distance <= pickup_radius:
+		label.visible = true
 
-		if distance <= pickup_radius:
-			label.visible = true
-
-			if (
-				e_key_down
-				and not e_key_was_down
+		if (
+			e_key_down
+			and not e_key_was_down
+		):
+			GameAudio.play(self, "weapon_pickup", 0.035)
+			GameAudio.play(self, "weapon_equip", 0.025)
+			if cached_player.has_method(
+				"equip_weapon_pickup"
 			):
-				GameAudio.play(self, "weapon_pickup", 0.035)
-				GameAudio.play(self, "weapon_equip", 0.025)
-				if player.has_method(
-					"equip_weapon_pickup"
+				cached_player.call(
+					"equip_weapon_pickup",
+					weapon_id
+				)
+
+				var scene: Node = (
+					get_tree().current_scene
+				)
+
+				if (
+					is_instance_valid(scene)
+					and scene.has_method(
+						"notify_weapon_picked"
+					)
 				):
-					player.equip_weapon_pickup(
+					scene.call(
+						"notify_weapon_picked",
 						weapon_id
 					)
 
-					var scene: Node = (
-						get_tree().current_scene
-					)
-
-					if (
-						is_instance_valid(scene)
-						and scene.has_method(
-							"notify_weapon_picked"
-						)
-					):
-						scene.call(
-							"notify_weapon_picked",
-							weapon_id
-						)
-
-					queue_free()
-					return
-		else:
-			label.visible = false
+				queue_free()
+				return
+	else:
+		label.visible = false
 
 	e_key_was_down = e_key_down
+
+
+func _cache_player() -> void:
+	player_retry_timer = 0.5
+	var player_value: Variant = get_tree().get_first_node_in_group(
+		"player"
+	)
+	if (
+		typeof(player_value) == TYPE_OBJECT
+		and is_instance_valid(player_value)
+		and player_value is Node2D
+	):
+		cached_player = player_value as Node2D
 
 
 func _update_label() -> void:

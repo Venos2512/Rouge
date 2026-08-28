@@ -39,3 +39,13 @@ Thêm Laser Rifle bắn tia năng lượng liên tục khi người chơi giữ 
 - Entry provider đã bị giải phóng được xóa khỏi cache để có thể tạo lại an toàn.
 - Khắc phục lỗi `Trying to cast a freed object` khi enemy bị hủy hoặc scene chuyển
   phòng đúng lúc beam đang tick.
+
+## Giảm lag khi tải tầng mới
+
+- `WeaponPickup` không còn gọi `get_first_node_in_group("player")` ở mỗi frame cho
+  từng pickup trong phòng bắt đầu.
+- Tham chiếu player được cache một lần; nếu player chưa sẵn sàng hoặc đã bị giải
+  phóng, pickup chỉ thử tìm lại mỗi 0,5 giây.
+- Trước: 5 pickup khởi đầu tạo 5 lần tìm toàn SceneTree mỗi frame.
+- Sau: tối đa một lần tìm cho mỗi pickup khi spawn, không có tree scan mỗi frame
+  trong trạng thái bình thường.
