@@ -1,4 +1,4 @@
-extends Node2D
+extends Node3D
 
 
 const EnemyDatabaseResource = preload(
@@ -48,6 +48,9 @@ const BiomeRoomGeometryBuilder = preload(
 	"res://gungeon_proto/scripts/dungeon/biome_room_geometry.gd"
 )
 
+const LAYOUT_SPAWN_MAX_PER_FRAME: int = 4
+const LAYOUT_SPAWN_TIME_BUDGET_USEC: int = 750
+
 var floor_number: int = 1
 
 var rooms: Dictionary = {}
@@ -62,6 +65,7 @@ var player: CharacterBody2D
 
 var room_navigation: Node
 var current_room_rect: Rect2 = ROOM_RECT
+var layout_batch_started_usec: int = 0
 
 func _ready() -> void:
 	randomize()
@@ -1033,7 +1037,7 @@ func _spawn_room_layout(
 		)
 		return
 
-	_spawn_layout_resource(
+	await _spawn_layout_resource(
 		layout_resource,
 		data
 	)
@@ -1054,6 +1058,8 @@ func _spawn_layout_resource(
 		room_data,
 		current_room_rect
 	)
+	var spawned_this_frame: int = 0
+	layout_batch_started_usec = Time.get_ticks_usec()
 
 	var walls_value: Variant = geometry.get("walls", [])
 
@@ -1075,6 +1081,7 @@ func _spawn_layout_resource(
 				wall_position,
 				wall_size
 			)
+			spawned_this_frame = await _yield_layout_budget(spawned_this_frame)
 
 	var props_value: Variant = geometry.get("props", [])
 
@@ -1103,6 +1110,7 @@ func _spawn_layout_resource(
 					)
 				)
 			)
+			spawned_this_frame = await _yield_layout_budget(spawned_this_frame)
 
 	var barrels_value: Variant = geometry.get("explosive_barrels", [])
 
@@ -1125,6 +1133,7 @@ func _spawn_layout_resource(
 					)
 				)
 			)
+			spawned_this_frame = await _yield_layout_budget(spawned_this_frame)
 
 	var spikes_value: Variant = geometry.get("spike_traps", [])
 
@@ -1139,6 +1148,7 @@ func _spawn_layout_resource(
 			_spawn_spike_trap(
 				spike_value
 			)
+			spawned_this_frame = await _yield_layout_budget(spawned_this_frame)
 
 	var saws_value: Variant = geometry.get("saw_traps", [])
 
@@ -1160,6 +1170,24 @@ func _spawn_layout_resource(
 				saw_from,
 				saw_to
 			)
+			spawned_this_frame = await _yield_layout_budget(spawned_this_frame)
+
+
+func _yield_layout_budget(spawned_this_frame: int) -> int:
+	var next_count: int = spawned_this_frame + 1
+	var batch_elapsed_usec: int = Time.get_ticks_usec() - layout_batch_started_usec
+	if (
+		next_count < LAYOUT_SPAWN_MAX_PER_FRAME
+		and batch_elapsed_usec < LAYOUT_SPAWN_TIME_BUDGET_USEC
+	):
+		return next_count
+
+	# Việc tạo scene kích hoạt _ready, collision và upload canvas item.
+	# Nhường một frame sau mỗi batch giữ đỉnh frame time ổn định khi
+	# layout được bổ sung thêm prop/trap trong các update sau.
+	await get_tree().process_frame
+	layout_batch_started_usec = Time.get_ticks_usec()
+	return 0
 
 
 func _is_in_door_approach(position_value: Vector2, padding: float) -> bool:

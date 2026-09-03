@@ -1,7 +1,25 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="PackedScene" path="res://gungeon_proto/scenes/enemies/base/enemy_actor_base.tscn" id="1_base"]
 [ext_resource type="Script" path="res://gungeon_proto/scripts/enemies/gunner.gd" id="2_script"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/presentation/authored_visual_3d.gd" id="3_visual"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/assets/models/pet/animal-fox.fbx" id="4_animal"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/assets/models/weapons/Blaster/blaster-b.fbx" id="5_weapon"]
 
 [node name="Gunner" instance=ExtResource("1_base")]
 script = ExtResource("2_script")
+
+[node name="Visual3D" type="Node3D" parent="."]
+rotation = Vector3(0, 1.5707963, 0)
+script = ExtResource("3_visual")
+
+[node name="AnimalModel" parent="Visual3D" instance=ExtResource("4_animal")]
+position = Vector3(0, -0.43, 0.112)
+scale = Vector3(0.51, 0.51, 0.51)
+
+[node name="WeaponModel3D" type="Node3D" parent="Visual3D"]
+position = Vector3(0, 0.12, 0.34)
+rotation = Vector3(0, 3.1415927, 0)
+
+[node name="Model" parent="Visual3D/WeaponModel3D" instance=ExtResource("5_weapon")]
+scale = Vector3(0.8, 0.8, 0.8)

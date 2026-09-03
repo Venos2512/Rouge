@@ -1,10 +1,20 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://gungeon_proto/scripts/enemies/boss.gd" id="1_boss"]
 [ext_resource type="Script" path="res://gungeon_proto/scripts/enemies/boss_data_binding.gd" id="2_binding"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/presentation/authored_visual_3d.gd" id="3_visual"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/assets/models/pet/animal-elephant.fbx" id="4_animal"]
 
 [node name="Boss" type="CharacterBody2D"]
 script = ExtResource("1_boss")
 
 [node name="BossDataBinding" type="Node" parent="."]
 script = ExtResource("2_binding")
+
+[node name="Visual3D" type="Node3D" parent="."]
+rotation = Vector3(0, 1.5707963, 0)
+script = ExtResource("3_visual")
+
+[node name="AnimalModel" parent="Visual3D" instance=ExtResource("4_animal")]
+position = Vector3(0, -0.775, -0.23)
+scale = Vector3(1.083, 1.083, 1.083)

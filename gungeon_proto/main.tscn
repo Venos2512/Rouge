@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" path="res://gungeon_proto/scenes/actors/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://gungeon_proto/scenes/gameplay/core_runtime.tscn" id="3_core"]
 [ext_resource type="Script" path="res://gungeon_proto/scripts/audio/audio_director.gd" id="4_audio"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/presentation/planar_3d_presenter.gd" id="5_3d_presenter"]
 
-[node name="Main" type="Node2D" unique_id=620393725]
+[node name="Main" type="Node3D" unique_id=620393725]
 script = ExtResource("1_main")
 
 [node name="Player" parent="." unique_id=1085420674 instance=ExtResource("2_player")]
@@ -14,3 +15,6 @@ script = ExtResource("1_main")
 
 [node name="AudioDirector" type="Node" parent="."]
 script = ExtResource("4_audio")
+
+[node name="Planar3DPresenter" type="Node3D" parent="."]
+script = ExtResource("5_3d_presenter")

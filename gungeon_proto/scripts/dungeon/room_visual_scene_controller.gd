@@ -66,6 +66,8 @@ const DIR_RIGHT := Vector2i(
 var dungeon: Node = null
 var last_signature: int = -1
 var terrain_details: Node2D
+var geometry_signature: int = -1
+var terrain_signature: int = -1
 
 
 func _ready() -> void:
@@ -357,6 +359,14 @@ func _rect_points(rect: Rect2) -> PackedVector2Array:
 
 
 func _update_room_geometry(room_rect: Rect2) -> void:
+	var next_signature: int = hash(room_rect)
+	if next_signature == geometry_signature:
+		_update_door_geometry(door_up, DIR_UP, room_rect)
+		_update_door_geometry(door_down, DIR_DOWN, room_rect)
+		_update_door_geometry(door_left, DIR_LEFT, room_rect)
+		_update_door_geometry(door_right, DIR_RIGHT, room_rect)
+		return
+	geometry_signature = next_signature
 	# Phòng lớn có thể vượt xa nền 4000x4000 cũ.
 	# Nền được nới theo phòng hiện tại để camera không nhìn ra vùng trống.
 	world_background.polygon = _rect_points(room_rect.grow(8192.0))
@@ -448,11 +458,15 @@ func _get_door_offset_for_room(
 
 
 func _rebuild_terrain_details(room_rect: Rect2, terrain_id: String) -> void:
+	var data: Dictionary = _get_rooms().get(_get_current_room(), {}) as Dictionary
+	var variant_id: String = str(data.get("terrain_variant", "clean"))
+	var next_signature: int = hash([room_rect, terrain_id, variant_id, _get_current_room()])
+	if next_signature == terrain_signature:
+		return
+	terrain_signature = next_signature
 	for child: Node in terrain_details.get_children():
 		child.queue_free()
 
-	var data: Dictionary = _get_rooms().get(_get_current_room(), {}) as Dictionary
-	var variant_id: String = str(data.get("terrain_variant", "clean"))
 	var rng := RandomNumberGenerator.new()
 	rng.seed = hash(str(_get_current_room()) + variant_id)
 	var detail_color: Color = _get_floor_color("combat", terrain_id).lightened(0.12)

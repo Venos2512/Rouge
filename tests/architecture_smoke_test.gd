@@ -17,6 +17,9 @@ const WEAPON_RESOURCE_PATHS: Array[String] = [
 	"res://gungeon_proto/resources/weapons/sword.tres",
 	"res://gungeon_proto/resources/weapons/spear.tres",
 	"res://gungeon_proto/resources/weapons/hammer.tres",
+	"res://gungeon_proto/resources/weapons/grenade_launcher.tres",
+	"res://gungeon_proto/resources/weapons/laser_rifle.tres",
+	"res://gungeon_proto/resources/weapons/crossbow.tres",
 ]
 const WEAPON_DATABASE_PATH := (
 	"res://gungeon_proto/resources/weapons/weapon_database.tres"

@@ -17,17 +17,24 @@ var player: Node2D
 var aim_direction: Vector2 = Vector2.RIGHT
 var sword_combo_step: int = 0
 var sword_combo_reset_timer: float = 0.0
-var sword_combo_reset_duration: float = 0.62
+var sword_combo_reset_duration: float = 0.86
 var sword_swing_timer: float = 0.0
 var sword_swing_duration: float = 0.14
 var sword_attack_direction: Vector2 = Vector2.RIGHT
 var sword_swing_from_angle: float = -0.95
 var sword_swing_to_angle: float = 0.95
+var pending_hit_timer: float = 0.0
+var pending_hit_weapon: Dictionary = {}
+var pending_hit_direction: Vector2 = Vector2.RIGHT
 
 
 func tick(
 	delta: float
 ) -> void:
+	if pending_hit_timer > 0.0:
+		pending_hit_timer = maxf(0.0, pending_hit_timer - delta)
+		if pending_hit_timer <= 0.0:
+			_commit_pending_hit()
 	sword_swing_timer = maxf(
 		0.0,
 		sword_swing_timer - delta
@@ -64,6 +71,11 @@ func perform_attack(
 		"cooldown": interval,
 		"recoil": 0.0,
 		"muzzle_flash": 0.0,
+		"sword_combo_step": sword_combo_step if sword_combo_step > 0 else 3,
+		"sword_swing_duration": sword_swing_duration,
+		"sword_swing_from_angle": sword_swing_from_angle,
+		"sword_swing_to_angle": sword_swing_to_angle,
+		"sword_attack_direction": sword_attack_direction,
 	}
 
 
@@ -155,11 +167,11 @@ func _swing_sword(
 			combo_weapon["hit_stop_duration"] = 0.035
 			combo_weapon["hit_stop_scale"] = 0.14
 
-			sword_swing_duration = 0.12
+			sword_swing_duration = 0.34
 			sword_swing_from_angle = -0.95
 			sword_swing_to_angle = 0.88
 
-			attack_interval = 0.24
+			attack_interval = 0.36
 
 		2:
 			combo_weapon["range"] = (
@@ -181,11 +193,11 @@ func _swing_sword(
 			combo_weapon["hit_stop_duration"] = 0.045
 			combo_weapon["hit_stop_scale"] = 0.12
 
-			sword_swing_duration = 0.13
+			sword_swing_duration = 0.37
 			sword_swing_from_angle = 0.95
 			sword_swing_to_angle = -0.92
 
-			attack_interval = 0.26
+			attack_interval = 0.39
 
 		3:
 			combo_weapon["range"] = (
@@ -209,29 +221,38 @@ func _swing_sword(
 			combo_weapon["hit_stop_duration"] = 0.075
 			combo_weapon["hit_stop_scale"] = 0.08
 
-			sword_swing_duration = 0.18
+			sword_swing_duration = 0.52
 			sword_swing_from_angle = -1.12
 			sword_swing_to_angle = 1.18
 
-			attack_interval = 0.38
+			attack_interval = 0.56
 
-	MeleeAttackSystemScript.perform_attack(
-		player,
-		combo_weapon,
-		sword_attack_direction
-	)
+	# The actual hit lands when the blade enters the fast active sweep. Keeping
+	# damage out of the anticipation frames makes contact match the animation.
+	pending_hit_weapon = combo_weapon
+	pending_hit_direction = sword_attack_direction
+	pending_hit_timer = sword_swing_duration * 0.34
 
 	sword_swing_timer = sword_swing_duration
-
-	player.call(
-		"_clamp_to_room"
-	)
 
 	if combo_step == 3:
 		sword_combo_step = 0
 
 
 	return attack_interval
+
+
+func _commit_pending_hit() -> void:
+	if not is_instance_valid(player) or pending_hit_weapon.is_empty():
+		pending_hit_weapon.clear()
+		return
+	MeleeAttackSystemScript.perform_attack(
+		player,
+		pending_hit_weapon,
+		pending_hit_direction
+	)
+	pending_hit_weapon.clear()
+	player.call("_clamp_to_room")
 
 
 func draw_held_weapon(

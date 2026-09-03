@@ -36,6 +36,13 @@ var room_rect := Rect2(-350, -190, 700, 380)
 
 var aim_direction := Vector2.RIGHT
 var fire_timer := 0.0
+const SWORD_ATTACK_BUFFER_TIME: float = 0.32
+var sword_attack_buffer_timer: float = 0.0
+var sword_visual_timer: float = 0.0
+var sword_visual_duration: float = 0.14
+var sword_visual_from_angle: float = 0.0
+var sword_visual_to_angle: float = 0.0
+var sword_visual_direction: Vector2 = Vector2.RIGHT
 
 var is_rolling := false
 var roll_direction := Vector2.RIGHT
@@ -137,19 +144,10 @@ func _input(event: InputEvent) -> void:
 			event as InputEventMouse
 		)
 
-		var viewport: Viewport = get_viewport()
-
-		if viewport != null:
-			var inverse_canvas: Transform2D = (
-				viewport.get_canvas_transform().affine_inverse()
-			)
-
-			cached_mouse_world_position = (
-				inverse_canvas
-				* mouse_event.position
-			)
-
-			has_cached_mouse_world_position = true
+		cached_mouse_world_position = _screen_to_gameplay(
+			mouse_event.position
+		)
+		has_cached_mouse_world_position = true
 
 	if not is_instance_valid(weapon_system):
 		return
@@ -193,6 +191,34 @@ func _input(event: InputEvent) -> void:
 			)
 
 			_update_weapon_label()
+
+
+func get_aim_world_position() -> Vector2:
+	var viewport: Viewport = get_viewport()
+	if viewport == null:
+		return global_position + aim_direction * 100.0
+	return _screen_to_gameplay(viewport.get_mouse_position())
+
+
+func _screen_to_gameplay(screen_position: Vector2) -> Vector2:
+	var scene: Node = get_tree().current_scene
+	if is_instance_valid(scene):
+		var presenter: Node = scene.get_node_or_null("Planar3DPresenter")
+		if (
+			is_instance_valid(presenter)
+			and presenter.has_method("screen_to_gameplay")
+		):
+			var projected: Variant = presenter.call(
+				"screen_to_gameplay",
+				screen_position
+			)
+			if typeof(projected) == TYPE_VECTOR2:
+				return projected as Vector2
+
+	var viewport: Viewport = get_viewport()
+	if viewport == null:
+		return global_position
+	return viewport.get_canvas_transform().affine_inverse() * screen_position
 
 
 func _get_slot_from_key(
@@ -338,6 +364,11 @@ func _physics_process(delta: float) -> void:
 		)
 
 	fire_timer = maxf(0.0, fire_timer - delta)
+	sword_attack_buffer_timer = maxf(
+		0.0,
+		sword_attack_buffer_timer - delta
+	)
+	sword_visual_timer = maxf(0.0, sword_visual_timer - delta)
 	roll_cooldown_timer = maxf(0.0, roll_cooldown_timer - delta)
 	invulnerable_timer = maxf(0.0, invulnerable_timer - delta)
 	hit_flash = maxf(0.0, hit_flash - delta)
@@ -383,10 +414,7 @@ func _physics_process(delta: float) -> void:
 	# mỗi physics frame.
 	# Không phụ thuộc MouseMotion event, vì player/camera có thể
 	# di chuyển trong khi con trỏ đang đứng yên.
-	var mouse_aim: Vector2 = (
-		get_global_mouse_position()
-		- global_position
-	)
+	var mouse_aim: Vector2 = get_aim_world_position() - global_position
 
 	if mouse_aim.length_squared() > 1.0:
 		aim_direction = mouse_aim.normalized()
@@ -579,6 +607,7 @@ func _physics_process(delta: float) -> void:
 	)
 
 	var wants_fire: bool = false
+	var attack_pressed: bool = false
 
 	if (
 		not carrying_object
@@ -587,13 +616,28 @@ func _physics_process(delta: float) -> void:
 		if bool(weapon["automatic"]):
 			wants_fire = fire_button_down
 		else:
-			wants_fire = (
+			attack_pressed = (
 				fire_button_down
 				and not fire_button_was_down
 			)
+			wants_fire = attack_pressed
 
-	if wants_fire and fire_timer <= 0.0:
-		_shoot()
+	var current_weapon_id: String = str(weapon_system.get("current_weapon"))
+	if current_weapon_id == "sword":
+		if attack_pressed:
+			sword_attack_buffer_timer = SWORD_ATTACK_BUFFER_TIME
+		if (
+			not carrying_object
+			and not suppress_fire
+			and fire_timer <= 0.0
+			and sword_attack_buffer_timer > 0.0
+		):
+			sword_attack_buffer_timer = 0.0
+			_shoot()
+	else:
+		sword_attack_buffer_timer = 0.0
+		if wants_fire and fire_timer <= 0.0:
+			_shoot()
 
 	fire_button_was_down = fire_button_down
 
@@ -804,6 +848,8 @@ func _shoot() -> void:
 			GameAudio.play(self, "shotgun_fire", 0.02)
 		"grenade_launcher":
 			GameAudio.play(self, "shotgun_fire", 0.02)
+		"crossbow":
+			GameAudio.play(self, "pistol_fire", 0.025)
 
 	fire_timer = float(
 		result.get(
@@ -829,6 +875,25 @@ func _shoot() -> void:
 			0.0
 		)
 	)
+
+	if weapon_id == "sword":
+		sword_visual_duration = maxf(
+			float(result.get("sword_swing_duration", 0.14)),
+			0.01
+		)
+		sword_visual_timer = sword_visual_duration
+		sword_visual_from_angle = float(
+			result.get("sword_swing_from_angle", -0.9)
+		)
+		sword_visual_to_angle = float(
+			result.get("sword_swing_to_angle", 0.9)
+		)
+		var sword_direction_value: Variant = result.get(
+			"sword_attack_direction",
+			aim_direction
+		)
+		if typeof(sword_direction_value) == TYPE_VECTOR2:
+			sword_visual_direction = (sword_direction_value as Vector2).normalized()
 
 	_update_weapon_label()
 

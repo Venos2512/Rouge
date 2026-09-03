@@ -409,10 +409,13 @@ func _get_aim_direction() -> Vector2:
 			if result.length_squared() > 0.001:
 				return result.normalized()
 
-	var mouse_direction: Vector2 = (
-		player.get_global_mouse_position()
-		- player.global_position
-	)
+	var mouse_world_position: Vector2 = player.get_global_mouse_position()
+	if player.has_method("get_aim_world_position"):
+		var aim_position_value: Variant = player.call("get_aim_world_position")
+		if typeof(aim_position_value) == TYPE_VECTOR2:
+			mouse_world_position = aim_position_value as Vector2
+
+	var mouse_direction: Vector2 = mouse_world_position - player.global_position
 
 	if mouse_direction.length_squared() > 0.001:
 		return mouse_direction.normalized()

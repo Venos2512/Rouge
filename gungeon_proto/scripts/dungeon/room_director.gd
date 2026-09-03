@@ -95,10 +95,16 @@ func enter_room(
 		return
 
 	dungeon.set("room_transition_in_progress", true)
+	var performance_overlay: Node = dungeon.get_node_or_null("CoreRuntime/RuntimePerformanceOverlay")
+	if is_instance_valid(performance_overlay):
+		performance_overlay.call("reset_transition_metrics")
+		performance_overlay.call("begin_phase", &"clear")
 
 	clear_room_entities(
 		dungeon
 	)
+	if is_instance_valid(performance_overlay):
+		performance_overlay.call("end_phase", &"clear")
 
 	dungeon.set(
 		"current_room",
@@ -146,16 +152,22 @@ func enter_room(
 	# cả hai trong cùng frame, số node sống tạm thời tăng gần gấp đôi
 	# và tạo spike rõ rệt ngay lúc bước qua cửa.
 	await dungeon.get_tree().process_frame
+	if is_instance_valid(performance_overlay):
+		performance_overlay.call("begin_phase", &"layout")
 
-	dungeon.call(
+	await dungeon.call(
 		"_spawn_room_layout",
 		data
 	)
+	if is_instance_valid(performance_overlay):
+		performance_overlay.call("end_phase", &"layout")
 
 	# Tách dựng hình học phòng khỏi spawn encounter. Enemy vừa spawn
 	# thường chạy setup AI/collision trong frame đầu tiên, nên gom cùng
 	# layout sẽ làm frame chuyển phòng quá nặng.
 	await dungeon.get_tree().process_frame
+	if is_instance_valid(performance_overlay):
+		performance_overlay.call("begin_phase", &"encounter")
 
 	if is_cleared:
 		dungeon.call(
@@ -166,6 +178,8 @@ func enter_room(
 			"_spawn_room_encounter",
 			data
 		)
+	if is_instance_valid(performance_overlay):
+		performance_overlay.call("end_phase", &"encounter")
 
 	dungeon.set(
 		"transition_cooldown",

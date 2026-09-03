@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3]
+[gd_scene load_steps=45 format=3]
 
 [ext_resource type="Script" path="res://gungeon_proto/scripts/core/game_input_bootstrap.gd" id="1_input"]
 [ext_resource type="Script" path="res://gungeon_proto/scripts/debug/dev_tools.gd" id="45_dev_tools"]
@@ -43,6 +43,7 @@
 [ext_resource type="Script" path="res://gungeon_proto/scripts/ui/dungeon_presentation_director.gd" id="41_presentation"]
 [ext_resource type="Script" path="res://gungeon_proto/scripts/core/core_runtime.gd" id="42_core_runtime"]
 [ext_resource type="Resource" path="res://gungeon_proto/resources/weapons/weapon_special_catalog.tres" id="43_special_catalog"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/debug/runtime_performance_overlay.gd" id="47_performance"]
 
 [node name="CoreRuntime" type="Node"]
 script = ExtResource("42_core_runtime")
@@ -52,6 +53,9 @@ script = ExtResource("1_input")
 
 [node name="DevTools" type="CanvasLayer" parent="."]
 script = ExtResource("45_dev_tools")
+
+[node name="RuntimePerformanceOverlay" type="CanvasLayer" parent="."]
+script = ExtResource("47_performance")
 
 [node name="ControllerGameplayBridge" type="Node" parent="."]
 script = ExtResource("2_controller")

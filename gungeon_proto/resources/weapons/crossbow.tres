@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://gungeon_proto/scripts/weapons/weapon_data.gd" id="1_data"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/weapons/attacks/crossbow_attack_provider.gd" id="2_attack"]
+
+[resource]
+script = ExtResource("1_data")
+id = "crossbow"
+display_name = "Crossbow"
+attack_provider = ExtResource("2_attack")
+hud_icon_id = "crossbow"
+pickup_color = Color(0.58, 0.36, 0.18, 1)
+damage = 4
+fire_interval = 0.72
+reload_time = 1.05
+recoil = 3.5
+magazine_size = 1
+reserve_ammo = 24
+bullet_speed = 720.0
+projectile_lifetime = 1.6
+tags = Array[String](["ranged", "projectile", "precision"])

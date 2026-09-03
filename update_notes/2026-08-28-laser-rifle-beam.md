@@ -65,3 +65,13 @@ Thêm Laser Rifle bắn tia năng lượng liên tục khi người chơi giữ 
 - Enemy được phát hiện bằng `EnemyCrowdService` và hit-radius, giống projectile hiện
   tại, vì phần lớn scene enemy không có `CollisionShape2D` để physics raycast trả về.
 - Beam chọn enemy gần nhất trên đoạn tia và không gây damage xuyên qua tường.
+
+## Làm mượt hướng hiển thị beam
+
+- Trước: điểm đầu và điểm cuối của tia chỉ đổi theo tick bắn 0,1 giây, khiến tia
+  nhảy thành từng nấc khi lia chuột hoặc vừa di chuyển vừa ngắm.
+- Sau: hình ảnh beam lấy hướng ngắm mới nhất ở mỗi lần redraw; khoảng cách va
+  chạm, damage 2, tiêu hao đạn và fire interval 0,1 giây vẫn giữ nguyên.
+- Kiểm thử bằng cách giữ chuột trái, lia nhanh quanh người chơi, vừa chạy vừa đổi
+  hướng và thử lần lượt với 1, 5 rồi nhiều enemy; tia phải xoay liên tục mà không
+  tăng số lần raycast hay damage query.

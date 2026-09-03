@@ -9,6 +9,10 @@ var life_time: float = 0.14
 var life_timer: float = 0.0
 
 
+func _ready() -> void:
+	add_to_group("melee_fx")
+
+
 func configure(
 	style_value: String,
 	range_value: float,

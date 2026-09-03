@@ -662,6 +662,35 @@ func _draw_weapon_icon(
 				2.0 * scale_value
 			)
 
+		"crossbow":
+			draw_line(
+				center + Vector2(-21.0, 0.0) * scale_value,
+				center + Vector2(20.0, 0.0) * scale_value,
+				color,
+				4.0 * scale_value
+			)
+			draw_arc(
+				center + Vector2(8.0, 0.0) * scale_value,
+				17.0 * scale_value,
+				-PI * 0.5,
+				PI * 0.5,
+				16,
+				color,
+				3.0 * scale_value
+			)
+			draw_line(
+				center + Vector2(8.0, -17.0) * scale_value,
+				center + Vector2(19.0, 0.0) * scale_value,
+				Color8(224, 196, 126),
+				1.5 * scale_value
+			)
+			draw_line(
+				center + Vector2(8.0, 17.0) * scale_value,
+				center + Vector2(19.0, 0.0) * scale_value,
+				Color8(224, 196, 126),
+				1.5 * scale_value
+			)
+
 		"laser_rifle":
 			draw_rect(
 				Rect2(

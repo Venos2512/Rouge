@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://gungeon_proto/scripts/enemies/bomber.gd" id="1_bomber"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/presentation/authored_visual_3d.gd" id="2_visual"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/assets/models/pet/animal-penguin.fbx" id="3_animal"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/assets/models/weapons/Blaster/grenade-a.fbx" id="4_grenade"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bomber"]
 radius = 14.0
@@ -10,3 +13,19 @@ script = ExtResource("1_bomber")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bomber")
+
+[node name="Visual3D" type="Node3D" parent="."]
+rotation = Vector3(0, 1.5707963, 0)
+script = ExtResource("2_visual")
+
+[node name="AnimalModel" parent="Visual3D" instance=ExtResource("3_animal")]
+position = Vector3(0, -0.43, -0.027)
+scale = Vector3(0.5394, 0.5394, 0.5394)
+
+[node name="GrenadeModel3D" type="Node3D" parent="Visual3D"]
+position = Vector3(0, 0.43, -0.18)
+rotation = Vector3(0, -1.5707963, 0)
+
+[node name="Model" parent="Visual3D/GrenadeModel3D" instance=ExtResource("4_grenade")]
+position = Vector3(-0.021, -0.17, 0.014)
+scale = Vector3(1.43, 1.43, 1.43)

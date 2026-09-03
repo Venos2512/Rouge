@@ -307,21 +307,37 @@ func _throw_bomb() -> void:
 func _get_navigation_direction(
 	target_position: Vector2
 ) -> Vector2:
+	var direct: Vector2 = target_position - global_position
+	if direct.length_squared() <= 1.0:
+		return Vector2.ZERO
+
 	var target_changed: bool = (
 		cached_navigation_target.distance_squared_to(
 			target_position
 		) > 48.0 * 48.0
 	)
 
-	if (
-		navigation_timer > 0.0
-		and not target_changed
-	):
+	if navigation_timer > 0.0 and not target_changed:
 		return cached_navigation_direction
 
-	var scene: Node = (
-		get_tree().current_scene
-	)
+	var scene: Node = get_tree().current_scene
+	# Phần lớn phòng là không gian mở. Bomber không cần chạy BFS chỉ để
+	# tiến thẳng tới player; nhiều Bomber trước đây cùng tạo cache đường
+	# đi mới mỗi 0,14-0,20 giây và gây tụt FPS kéo dài.
+	if (
+		is_instance_valid(scene)
+		and scene.has_method("enemy_has_line_of_sight")
+		and bool(scene.call(
+			"enemy_has_line_of_sight",
+			global_position,
+			target_position,
+			14.0
+		))
+	):
+		cached_navigation_direction = direct.normalized()
+		cached_navigation_target = target_position
+		navigation_timer = randf_range(0.28, 0.42)
+		return cached_navigation_direction
 
 	if (
 		is_instance_valid(
@@ -349,32 +365,15 @@ func _get_navigation_direction(
 				target_position
 			)
 
-			navigation_timer = randf_range(
-				0.14,
-				0.20
-			)
+			navigation_timer = randf_range(0.28, 0.42)
 
 			return cached_navigation_direction
 
-	var direct: Vector2 = (
-		target_position
-		- global_position
-	)
-
-	if direct.length_squared() <= 1.0:
-		cached_navigation_direction = Vector2.ZERO
-
-	else:
-		cached_navigation_direction = (
-			direct.normalized()
-		)
+	cached_navigation_direction = direct.normalized()
 
 	cached_navigation_target = target_position
 
-	navigation_timer = randf_range(
-		0.14,
-		0.20
-	)
+	navigation_timer = randf_range(0.28, 0.42)
 
 	return cached_navigation_direction
 

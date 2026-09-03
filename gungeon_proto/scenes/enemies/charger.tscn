@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="PackedScene" path="res://gungeon_proto/scenes/enemies/base/enemy_actor_base.tscn" id="1_base"]
 [ext_resource type="Script" path="res://gungeon_proto/scripts/enemies/charger.gd" id="2_script"]
+[ext_resource type="Script" path="res://gungeon_proto/scripts/presentation/authored_visual_3d.gd" id="3_visual"]
+[ext_resource type="PackedScene" path="res://gungeon_proto/assets/models/pet/animal-cow.fbx" id="4_animal"]
 
 [node name="Charger" instance=ExtResource("1_base")]
 script = ExtResource("2_script")
+
+[node name="Visual3D" type="Node3D" parent="."]
+rotation = Vector3(0, 1.5707963, 0)
+script = ExtResource("3_visual")
+
+[node name="AnimalModel" parent="Visual3D" instance=ExtResource("4_animal")]
+position = Vector3(0, -0.43, -0.056)
+scale = Vector3(0.5334, 0.5334, 0.5334)

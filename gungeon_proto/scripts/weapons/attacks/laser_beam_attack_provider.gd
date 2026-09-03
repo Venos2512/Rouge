@@ -17,8 +17,7 @@ const BEAM_VISIBLE_TIME: float = 0.11
 const DEFAULT_ENEMY_HIT_RADIUS: float = 14.0
 
 var beam_time_left: float = 0.0
-var beam_start_local: Vector2 = Vector2.ZERO
-var beam_end_local: Vector2 = Vector2.ZERO
+var beam_hit_distance: float = 0.0
 
 var crowd_service: Node = null
 
@@ -77,8 +76,7 @@ func perform_attack(
 	elif is_instance_valid(physics_collider):
 		_apply_beam_damage(player, physics_collider, weapon, target, direction)
 
-	beam_start_local = origin - player.global_position
-	beam_end_local = target - player.global_position
+	beam_hit_distance = origin.distance_to(target)
 	beam_time_left = BEAM_VISIBLE_TIME
 
 	if not god_mode:
@@ -107,6 +105,16 @@ func draw_held_weapon(
 		return
 
 	var width: float = float(weapon.get("beam_width", 5.0))
+	# Damage và collision vẫn tick theo fire_interval, nhưng phần hiển thị phải
+	# dùng hướng ngắm hiện tại ở mỗi lần redraw. Nếu giữ endpoint của tick trước,
+	# tia sẽ nhảy theo nấc 0,1 giây khi người chơi lia chuột.
+	var visual_direction: Vector2 = aim_direction.normalized()
+	if visual_direction.is_zero_approx():
+		return
+	var beam_start_local: Vector2 = visual_direction * MUZZLE_DISTANCE
+	var beam_end_local: Vector2 = (
+		beam_start_local + visual_direction * beam_hit_distance
+	)
 	player.draw_line(beam_start_local, beam_end_local, Color(0.12, 0.72, 1.0, 0.3), width + 6.0)
 	player.draw_line(beam_start_local, beam_end_local, Color8(48, 205, 255), width)
 	player.draw_line(beam_start_local, beam_end_local, Color.WHITE, maxf(1.0, width * 0.28))

@@ -130,6 +130,7 @@ func _process_travel(
 	delta: float
 ) -> void:
 	travel_timer += delta
+	redraw_timer -= delta
 
 	var progress: float = clampf(
 		travel_timer / TRAVEL_DURATION,
@@ -146,7 +147,9 @@ func _process_travel(
 		progress * PI
 	) * 46.0
 
-	queue_redraw()
+	if redraw_timer <= 0.0:
+		redraw_timer = REDRAW_INTERVAL
+		queue_redraw()
 
 	if progress < 1.0:
 		return
@@ -203,7 +206,7 @@ func _explode() -> void:
 		var prop: Node2D = prop_value as Node2D
 		if not is_instance_valid(prop):
 			continue
-		if explosion_position.distance_to(prop.global_position) > EXPLOSION_RADIUS:
+		if explosion_position.distance_squared_to(prop.global_position) > EXPLOSION_RADIUS * EXPLOSION_RADIUS:
 			continue
 		if prop.has_method("trigger_from_explosion"):
 			prop.call("trigger_from_explosion")
